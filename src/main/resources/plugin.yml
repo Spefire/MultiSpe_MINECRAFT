@@ -1,0 +1,30 @@
+name: MultiSpe
+main: fr.spefire.multispe.MultiSpe
+version: 1.0
+api-version: '1.21'
+author: Spefire
+commands:
+  ms:
+    description: The plugin help
+    usage: /ms
+  msHelp:
+    description: The plugin help
+    usage: /msHelp
+  msStatus:
+    description: To know your class
+    usage: /msStatus
+  msClass:
+    description: To choice your class
+    usage: /msClass <???>
+  msStuff:
+    description: To get your stuff
+    usage: /msStuff
+  msLanguage:
+    description: To change your language
+    usage: /msLanguage <english|french>
+  msLocation:
+    description: To know if the plugin is actived at your location
+    usage: /msLocation
+  msSetWorld:
+    description: To enable or disable the plugin in this world
+    usage: /msSetWorld <true/false>
