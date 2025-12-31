@@ -79,8 +79,9 @@ public class PlayerCommands implements Listener {
 
 			// ----------------------------------------------------------------------------------------------------------------------
 			else if (params[0].equalsIgnoreCase("/msClass")) {
-				if (pSpe == null || plugin.hasPermission(p, "multispe.change.class")
-						|| plugin.hasPermission(p, "multispe.admin")) {
+				if (plugin.hasPermission(p, "multispe.admin")
+						|| (pSpe == null && plugin.hasPermission(p, "multispe.add.class"))
+						|| (pSpe != null || plugin.hasPermission(p, "multispe.change.class"))) {
 					if (params.length == 2) {
 						String speWanted = params[1].toLowerCase();
 						List<Spe> spes = Spe.getAllSpes();
@@ -100,7 +101,7 @@ public class PlayerCommands implements Listener {
 										error.printStackTrace();
 									}
 									p.sendMessage(ChatColor.AQUA + messagesConfig.getString(pLanguage + ".toclass")
-											+ (pIsFrench ? spe.getNameFr() : spe.getNameEn()));
+											+ ChatColor.WHITE + (pIsFrench ? spe.getNameFr() : spe.getNameEn()));
 								} else {
 									p.sendMessage(
 											ChatColor.RED + messagesConfig.getString(pLanguage + ".nopermissiontoclass")
@@ -112,7 +113,31 @@ public class PlayerCommands implements Listener {
 						p.sendMessage(ChatColor.RED + "/msClass <???>");
 					}
 				} else {
-					p.sendMessage(ChatColor.RED + messagesConfig.getString(pLanguage + ".alreadyclass"));
+					if (pSpe == null && plugin.hasPermission(p, "multispe.add.class")) {
+						p.sendMessage(ChatColor.RED + messagesConfig.getString(pLanguage + ".nopermission"));
+					}
+					if (pSpe != null || plugin.hasPermission(p, "multispe.change.class")) {
+						p.sendMessage(ChatColor.RED + messagesConfig.getString(pLanguage + ".alreadyclass"));
+					}
+				}
+			}
+
+			// ----------------------------------------------------------------------------------------------------------------------
+			else if (params[0].equalsIgnoreCase("/msUnclass")) {
+				if (plugin.hasPermission(p, "multispe.remove.class") || plugin.hasPermission(p, "multispe.admin")) {
+					if (pSpe != null) {
+						playersConfig.set(p.getName() + ".class", null);
+						try {
+							playersConfig.save(playersFile);
+						} catch (IOException error) {
+							error.printStackTrace();
+						}
+						p.sendMessage(ChatColor.AQUA + messagesConfig.getString(pLanguage + ".tonoclass"));
+					} else {
+						p.sendMessage(ChatColor.RED + messagesConfig.getString(pLanguage + ".noclass"));
+					}
+				} else {
+					p.sendMessage(ChatColor.RED + messagesConfig.getString(pLanguage + ".nopermission"));
 				}
 			}
 
@@ -216,6 +241,8 @@ public class PlayerCommands implements Listener {
 
 			// ----------------------------------------------------------------------------------------------------------------------
 			else {
+				Boolean canUnclass = plugin.hasPermission(p, "multispe.remove.class")
+						|| plugin.hasPermission(p, "multispe.admin");
 				Boolean canStuff = plugin.hasPermission(p, "multispe.stuff")
 						|| plugin.hasPermission(p, "multispe.admin");
 				Boolean canSetWorld = plugin.hasPermission(p, "multispe.setworld")
@@ -226,6 +253,9 @@ public class PlayerCommands implements Listener {
 					p.sendMessage(ChatColor.AQUA + "                          ");
 					p.sendMessage(ChatColor.AQUA + "/msStatus: " + ChatColor.WHITE + "Savoir sa classe");
 					p.sendMessage(ChatColor.AQUA + "/msClass: " + ChatColor.WHITE + "Choisir sa classe");
+					if (canUnclass) {
+						p.sendMessage(ChatColor.AQUA + "/msUnclass: " + ChatColor.WHITE + "Supprimer sa classe");
+					}
 					if (canStuff) {
 						p.sendMessage(ChatColor.AQUA + "/msStuff: " + ChatColor.WHITE + "Avoir son équipement");
 					}
@@ -242,6 +272,9 @@ public class PlayerCommands implements Listener {
 					p.sendMessage(ChatColor.AQUA + "                          ");
 					p.sendMessage(ChatColor.AQUA + "/msStatus: " + ChatColor.WHITE + "To know your class");
 					p.sendMessage(ChatColor.AQUA + "/msClass: " + ChatColor.WHITE + "To choice your class");
+					if (canUnclass) {
+						p.sendMessage(ChatColor.AQUA + "/msUnclass: " + ChatColor.WHITE + "To remove your class");
+					}
 					if (canStuff) {
 						p.sendMessage(ChatColor.AQUA + "/msStuff: " + ChatColor.WHITE + "To get your stuff");
 					}

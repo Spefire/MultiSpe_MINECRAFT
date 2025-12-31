@@ -29,6 +29,7 @@ public class Message {
 		List<Message> messages = List.of(new Message("touse", "Vous utilisez ", "You use "),
 				new Message("tochange", " est devenu ", " became "), new Message("tobe", "Vous êtes ", "You are "),
 				new Message("toclass", "Maintenant vous êtes ", "Now you are "),
+				new Message("tonoclass", "Désormais vous n'avez plus de classe", "Now you no longer have a class"),
 				new Message("nopermission", "Vous n'avez pas la permission", "You don't have the permission"),
 				new Message("nopermissiontoclass", "Vous n'avez pas la permission de devenir ",
 						"You don't have the permission to become "),

@@ -16,6 +16,9 @@ commands:
   msClass:
     description: To choice your class
     usage: /msClass <???>
+  msUnclass:
+    description: To remove your class
+    usage: /msUnclass
   msStuff:
     description: To get your stuff
     usage: /msStuff
