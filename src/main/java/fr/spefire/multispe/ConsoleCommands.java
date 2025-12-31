@@ -12,6 +12,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+import fr.spefire.multispe.models.LangType;
 import fr.spefire.multispe.models.Spe;
 
 public class ConsoleCommands implements Listener {
@@ -26,13 +27,13 @@ public class ConsoleCommands implements Listener {
 	public void PlayerTchat(AsyncPlayerChatEvent e) {
 		Player p = e.getPlayer();
 		FileConfiguration pluginConfig = plugin.getConfig();
-		Boolean tchat = pluginConfig.getBoolean("Tchat");
+		Boolean tchat = pluginConfig.getBoolean("tchat");
 		if (tchat) {
 			File playersFile = new File("plugins/MultiSpe/players.yml");
 			FileConfiguration playersConfig = YamlConfiguration.loadConfiguration(playersFile);
 			String pSpe = playersConfig.getString(p.getName() + ".class");
 			String pLanguage = playersConfig.getString(p.getName() + ".language");
-			Boolean pIsFrench = "French".equalsIgnoreCase(pLanguage);
+			Boolean pIsFrench = LangType.FR.toString().equals(pLanguage);
 
 			List<Spe> spes = Spe.getAllSpes();
 			Spe spe = (pSpe != null) ? spes.stream().filter(s -> pSpe.equals(s.getId())).findFirst().orElse(null)

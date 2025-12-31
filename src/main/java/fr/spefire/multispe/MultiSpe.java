@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import fr.spefire.multispe.models.LangType;
 import fr.spefire.multispe.models.Message;
 import fr.spefire.multispe.models.Skill;
 import fr.spefire.multispe.models.Spe;
@@ -43,14 +44,14 @@ public class MultiSpe extends JavaPlugin {
 		try {
 			File f = new File("plugins/MultiSpe/config.yml");
 			if (f.length() == 0) {
-				FileConfiguration pluginConfig = plugin.getConfig();
 				List<Spe> spes = Spe.getAllSpes();
 				String idsAsString = spes.stream().map(Spe::getId).collect(Collectors.joining(", ", "[", "]"));
-				pluginConfig.set("Language", "English");
-				pluginConfig.set("Tchat", true);
-				pluginConfig.set("Cooldown", 5);
-				pluginConfig.set("Selection", Material.SLIME_BALL.toString());
-				pluginConfig.set("Classes", idsAsString);
+				FileConfiguration pluginConfig = plugin.getConfig();
+				pluginConfig.set("language", LangType.EN.toString());
+				pluginConfig.set("tchat", true);
+				pluginConfig.set("cooldown", 5);
+				pluginConfig.set("selection", Material.SLIME_BALL.toString());
+				pluginConfig.set("classes", idsAsString);
 				plugin.saveConfig();
 			}
 			System.out.println("[MultiSpe] Config file loaded");
@@ -77,8 +78,8 @@ public class MultiSpe extends JavaPlugin {
 			if (!f.exists()) {
 				f.createNewFile();
 				FileConfiguration fileConfig = YamlConfiguration.loadConfiguration(f);
-				ConfigurationSection french = fileConfig.createSection("French");
-				ConfigurationSection english = fileConfig.createSection("English");
+				ConfigurationSection french = fileConfig.createSection(LangType.FR.toString());
+				ConfigurationSection english = fileConfig.createSection(LangType.EN.toString());
 				List<Spe> spes = Spe.getAllSpes();
 				for (Spe spe : spes) {
 					french.set(spe.getId(), spe.getDefaultFr());
@@ -99,8 +100,8 @@ public class MultiSpe extends JavaPlugin {
 			if (!f.exists()) {
 				f.createNewFile();
 				FileConfiguration fileConfig = YamlConfiguration.loadConfiguration(f);
-				ConfigurationSection french = fileConfig.createSection("French");
-				ConfigurationSection english = fileConfig.createSection("English");
+				ConfigurationSection french = fileConfig.createSection(LangType.FR.toString());
+				ConfigurationSection english = fileConfig.createSection(LangType.EN.toString());
 				List<Skill> skills = Skill.getAllSkills();
 				for (Skill skill : skills) {
 					french.set(skill.getId(), skill.getDefaultFr());
@@ -121,8 +122,8 @@ public class MultiSpe extends JavaPlugin {
 			if (!f.exists()) {
 				f.createNewFile();
 				FileConfiguration fileConfig = YamlConfiguration.loadConfiguration(f);
-				ConfigurationSection french = fileConfig.createSection("French");
-				ConfigurationSection english = fileConfig.createSection("English");
+				ConfigurationSection french = fileConfig.createSection(LangType.FR.toString());
+				ConfigurationSection english = fileConfig.createSection(LangType.EN.toString());
 				List<Message> messages = Message.getAllMessages();
 				for (Message msg : messages) {
 					french.set(msg.getKey(), msg.getFr());
@@ -142,7 +143,7 @@ public class MultiSpe extends JavaPlugin {
 		System.out.println("[MultiSpe] Plugin disconnected");
 	}
 
-	public boolean hasPermission(Player p, String perm) {
+	public boolean checkPerm(Player p, String perm) {
 		if (!p.isOp()) {
 			return false;
 		} else {

@@ -16,6 +16,7 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.inventory.ItemStack;
 
+import fr.spefire.multispe.models.LangType;
 import fr.spefire.multispe.models.Spe;
 import fr.spefire.multispe.models.SpeType;
 
@@ -36,7 +37,7 @@ public class PlayerCommands implements Listener {
 		String pLanguage = playersConfig.getString(pLanguagePath);
 		if (pLanguage == null) {
 			FileConfiguration pluginConfig = plugin.getConfig();
-			String defLanguage = pluginConfig.getString("Language");
+			String defLanguage = pluginConfig.getString("language");
 			playersConfig.set(pLanguagePath, defLanguage);
 		}
 		playersConfig.set(p.getName() + ".loading", true);
@@ -60,7 +61,7 @@ public class PlayerCommands implements Listener {
 			FileConfiguration playersConfig = YamlConfiguration.loadConfiguration(playersFile);
 			String pSpe = playersConfig.getString(p.getName() + ".class");
 			String pLanguage = playersConfig.getString(p.getName() + ".language");
-			Boolean pIsFrench = "French".equalsIgnoreCase(pLanguage);
+			Boolean pIsFrench = LangType.FR.toString().equals(pLanguage);
 			File messagesFile = new File("plugins/MultiSpe/lang_messages.yml");
 			FileConfiguration messagesConfig = YamlConfiguration.loadConfiguration(messagesFile);
 
@@ -79,21 +80,20 @@ public class PlayerCommands implements Listener {
 
 			// ----------------------------------------------------------------------------------------------------------------------
 			else if (params[0].equalsIgnoreCase("/msClass")) {
-				if (plugin.hasPermission(p, "multispe.admin")
-						|| (pSpe == null && plugin.hasPermission(p, "multispe.add.class"))
-						|| (pSpe != null || plugin.hasPermission(p, "multispe.change.class"))) {
+				if (plugin.checkPerm(p, "multispe.admin") || (pSpe == null && plugin.checkPerm(p, "multispe.add.class"))
+						|| (pSpe != null || plugin.checkPerm(p, "multispe.change.class"))) {
 					if (params.length == 2) {
 						String speWanted = params[1].toLowerCase();
 						List<Spe> spes = Spe.getAllSpes();
-						if (!plugin.hasPermission(p, "multispe.change.class")) {
+						if (!plugin.checkPerm(p, "multispe.change.class")) {
 							p.sendMessage(ChatColor.RED + messagesConfig.getString(pLanguage + ".warningclass"));
 						}
 						for (Spe spe : spes) {
 							if (speWanted.equalsIgnoreCase(spe.getNameFr())
 									|| speWanted.equalsIgnoreCase(spe.getNameEn())) {
-								if (plugin.hasPermission(p, "multispe.class." + spe.getId().toLowerCase())
-										|| plugin.hasPermission(p, "multispe.class.all")
-										|| plugin.hasPermission(p, "multispe.admin")) {
+								if (plugin.checkPerm(p, "multispe.class." + spe.getId().toLowerCase())
+										|| plugin.checkPerm(p, "multispe.class.all")
+										|| plugin.checkPerm(p, "multispe.admin")) {
 									playersConfig.set(p.getName() + ".class", spe.getId());
 									try {
 										playersConfig.save(playersFile);
@@ -113,10 +113,10 @@ public class PlayerCommands implements Listener {
 						p.sendMessage(ChatColor.RED + "/msClass <???>");
 					}
 				} else {
-					if (pSpe == null && plugin.hasPermission(p, "multispe.add.class")) {
+					if (pSpe == null && plugin.checkPerm(p, "multispe.add.class")) {
 						p.sendMessage(ChatColor.RED + messagesConfig.getString(pLanguage + ".nopermission"));
 					}
-					if (pSpe != null || plugin.hasPermission(p, "multispe.change.class")) {
+					if (pSpe != null || plugin.checkPerm(p, "multispe.change.class")) {
 						p.sendMessage(ChatColor.RED + messagesConfig.getString(pLanguage + ".alreadyclass"));
 					}
 				}
@@ -124,7 +124,7 @@ public class PlayerCommands implements Listener {
 
 			// ----------------------------------------------------------------------------------------------------------------------
 			else if (params[0].equalsIgnoreCase("/msUnclass")) {
-				if (plugin.hasPermission(p, "multispe.remove.class") || plugin.hasPermission(p, "multispe.admin")) {
+				if (plugin.checkPerm(p, "multispe.remove.class") || plugin.checkPerm(p, "multispe.admin")) {
 					if (pSpe != null) {
 						playersConfig.set(p.getName() + ".class", null);
 						try {
@@ -143,37 +143,37 @@ public class PlayerCommands implements Listener {
 
 			// ----------------------------------------------------------------------------------------------------------------------
 			else if (params[0].equalsIgnoreCase("/msStuff")) {
-				if (plugin.hasPermission(p, "multispe.stuff") || plugin.hasPermission(p, "multispe.admin")) {
+				if (plugin.checkPerm(p, "multispe.stuff") || plugin.checkPerm(p, "multispe.admin")) {
 					if (pSpe != null) {
 						ItemStack item;
-						if (pSpe.equalsIgnoreCase(SpeType.WAR.toString())) {
+						if (pSpe.equals(SpeType.WAR.toString())) {
 							item = new ItemStack(Material.STONE_SWORD);
 							p.getInventory().addItem(item);
-						} else if (pSpe.equalsIgnoreCase(SpeType.ARC.toString())) {
+						} else if (pSpe.equals(SpeType.ARC.toString())) {
 							item = new ItemStack(Material.BOW);
 							p.getInventory().addItem(item);
 							item = new ItemStack(Material.ARROW);
 							item.setAmount(64);
 							p.getInventory().addItem(item);
-						} else if (pSpe.equalsIgnoreCase(SpeType.PRI.toString())) {
+						} else if (pSpe.equals(SpeType.PRI.toString())) {
 							item = new ItemStack(Material.ROSE_BUSH);
 							p.getInventory().addItem(item);
-						} else if (pSpe.equalsIgnoreCase(SpeType.WIZ.toString())) {
+						} else if (pSpe.equals(SpeType.WIZ.toString())) {
 							item = new ItemStack(Material.PAPER);
 							p.getInventory().addItem(item);
-						} else if (pSpe.equalsIgnoreCase(SpeType.VAM.toString())) {
+						} else if (pSpe.equals(SpeType.VAM.toString())) {
 							item = new ItemStack(Material.STONE_HOE);
 							p.getInventory().addItem(item);
-						} else if (pSpe.equalsIgnoreCase(SpeType.NEC.toString())) {
+						} else if (pSpe.equals(SpeType.NEC.toString())) {
 							item = new ItemStack(Material.FLINT);
 							p.getInventory().addItem(item);
-						} else if (pSpe.equalsIgnoreCase(SpeType.DRU.toString())) {
+						} else if (pSpe.equals(SpeType.DRU.toString())) {
 							item = new ItemStack(Material.SUNFLOWER);
 							p.getInventory().addItem(item);
-						} else if (pSpe.equalsIgnoreCase(SpeType.BUT.toString())) {
+						} else if (pSpe.equals(SpeType.BUT.toString())) {
 							item = new ItemStack(Material.STONE_AXE);
 							p.getInventory().addItem(item);
-						} else if (pSpe.equalsIgnoreCase(SpeType.ASS.toString())) {
+						} else if (pSpe.equals(SpeType.ASS.toString())) {
 							item = new ItemStack(Material.STONE_SWORD);
 							p.getInventory().addItem(item);
 						}
@@ -199,7 +199,7 @@ public class PlayerCommands implements Listener {
 
 			// ----------------------------------------------------------------------------------------------------------------------
 			else if (params[0].equalsIgnoreCase("/msSetWorld")) {
-				if (plugin.hasPermission(p, "multispe.setworld") || plugin.hasPermission(p, "multispe.admin")) {
+				if (plugin.checkPerm(p, "multispe.setworld") || plugin.checkPerm(p, "multispe.admin")) {
 					if (params.length == 2 && params[1].equalsIgnoreCase("true")) {
 						pluginConfig.set(p.getWorld().toString(), true);
 						plugin.saveConfig();
@@ -219,7 +219,7 @@ public class PlayerCommands implements Listener {
 			// ----------------------------------------------------------------------------------------------------------------------
 			else if (params[0].equalsIgnoreCase("/msLanguage")) {
 				if (params.length == 2 && params[1].toLowerCase().startsWith("en")) {
-					playersConfig.set(p.getName() + ".language", "English");
+					playersConfig.set(p.getName() + ".language", LangType.EN.toString());
 					try {
 						playersConfig.save(playersFile);
 					} catch (IOException error) {
@@ -227,7 +227,7 @@ public class PlayerCommands implements Listener {
 					}
 					p.sendMessage(ChatColor.AQUA + "Now the plugin is in english");
 				} else if (params.length == 2 && params[1].toLowerCase().startsWith("fr")) {
-					playersConfig.set(p.getName() + ".language", "French");
+					playersConfig.set(p.getName() + ".language", LangType.FR.toString());
 					try {
 						playersConfig.save(playersFile);
 					} catch (IOException error) {
@@ -241,13 +241,12 @@ public class PlayerCommands implements Listener {
 
 			// ----------------------------------------------------------------------------------------------------------------------
 			else {
-				Boolean canUnclass = plugin.hasPermission(p, "multispe.remove.class")
-						|| plugin.hasPermission(p, "multispe.admin");
-				Boolean canStuff = plugin.hasPermission(p, "multispe.stuff")
-						|| plugin.hasPermission(p, "multispe.admin");
-				Boolean canSetWorld = plugin.hasPermission(p, "multispe.setworld")
-						|| plugin.hasPermission(p, "multispe.admin");
+				Boolean canUnclass = plugin.checkPerm(p, "multispe.remove.class")
+						|| plugin.checkPerm(p, "multispe.admin");
+				Boolean canStuff = plugin.checkPerm(p, "multispe.stuff") || plugin.checkPerm(p, "multispe.admin");
+				Boolean canSetWorld = plugin.checkPerm(p, "multispe.setworld") || plugin.checkPerm(p, "multispe.admin");
 				if (pIsFrench) {
+					p.sendMessage(ChatColor.AQUA + "                          ");
 					p.sendMessage(ChatColor.AQUA + "---------" + ChatColor.WHITE + "[MultiSpe] - Aide" + ChatColor.AQUA
 							+ "--------------");
 					p.sendMessage(ChatColor.AQUA + "                          ");
@@ -267,6 +266,7 @@ public class PlayerCommands implements Listener {
 					}
 					p.sendMessage(ChatColor.AQUA + "/msLanguage: " + ChatColor.WHITE + "Choisir sa langue");
 				} else {
+					p.sendMessage(ChatColor.AQUA + "                          ");
 					p.sendMessage(ChatColor.AQUA + "---------" + ChatColor.WHITE + "[MultiSpe] - Help" + ChatColor.AQUA
 							+ "--------------");
 					p.sendMessage(ChatColor.AQUA + "                          ");
