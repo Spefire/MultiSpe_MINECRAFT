@@ -47,6 +47,7 @@ public class MultiSpe extends JavaPlugin {
 				List<Spe> spes = Spe.getAllSpes();
 				String idsAsString = spes.stream().map(Spe::getId).collect(Collectors.joining(", ", "[", "]"));
 				pluginConfig.set("Language", "English");
+				pluginConfig.set("Tchat", true);
 				pluginConfig.set("Cooldown", 5);
 				pluginConfig.set("Selection", Material.SLIME_BALL.toString());
 				pluginConfig.set("Classes", idsAsString);

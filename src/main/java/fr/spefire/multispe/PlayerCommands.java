@@ -48,7 +48,7 @@ public class PlayerCommands implements Listener {
 	}
 
 	@EventHandler(priority = EventPriority.LOWEST)
-	public void demandeClasse(PlayerCommandPreprocessEvent e) {
+	public void CheckCommands(PlayerCommandPreprocessEvent e) {
 		Player p = e.getPlayer();
 		String message = e.getMessage();
 		String[] params = message.split(" ");
@@ -93,7 +93,7 @@ public class PlayerCommands implements Listener {
 								if (plugin.hasPermission(p, "multispe.class." + spe.getId().toLowerCase())
 										|| plugin.hasPermission(p, "multispe.class.all")
 										|| plugin.hasPermission(p, "multispe.admin")) {
-									playersConfig.set(pSpe, spe.getId());
+									playersConfig.set(p.getName() + ".class", spe.getId());
 									try {
 										playersConfig.save(playersFile);
 									} catch (IOException error) {
