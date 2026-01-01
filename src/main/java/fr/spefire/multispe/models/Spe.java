@@ -3,15 +3,15 @@ package fr.spefire.multispe.models;
 import java.util.List;
 
 public class Spe {
-	private final SpeType type;
+	private final SpeCode code;
 	private final String defaultFr;
 	private final String defaultEn;
 	private String nameFr;
 	private String nameEn;
 	private List<Skill> skills;
 
-	public Spe(SpeType type, String fr, String en, List<Skill> skills) {
-		this.type = type;
+	public Spe(SpeCode code, String fr, String en, List<Skill> skills) {
+		this.code = code;
 		this.defaultFr = fr;
 		this.defaultEn = en;
 		this.nameFr = fr;
@@ -20,11 +20,11 @@ public class Spe {
 	}
 
 	public String getId() {
-		return type.toString();
+		return code.toString();
 	}
 
-	public SpeType getType() {
-		return type;
+	public SpeCode getCode() {
+		return code;
 	}
 
 	public String getDefaultFr() {
@@ -112,15 +112,15 @@ public class Spe {
 				Skill.getSkill("ASS_04"));
 		List<Spe> spes = List.of(
 				// --- SPES ---
-				new Spe(SpeType.WAR, "Guerrier", "Warrior", skillsWAR),
-				new Spe(SpeType.ARC, "Archer", "Archer", skillsARC),
-				new Spe(SpeType.PRI, "Prêtre", "Priest", skillsPRI),
-				new Spe(SpeType.WIZ, "Sorcier", "Wizard", skillsWIZ),
-				new Spe(SpeType.VAM, "Vampire", "Vampire", skillsVAM),
-				new Spe(SpeType.NEC, "Nécromancien", "Necromancer", skillsNEC),
-				new Spe(SpeType.DRU, "Druide", "Druid", skillsDRU),
-				new Spe(SpeType.BUT, "Boucher", "Butcher", skillsBUT),
-				new Spe(SpeType.ASS, "Assassin", "Assassin", skillsASS));
+				new Spe(SpeCode.WAR, "Guerrier", "Warrior", skillsWAR),
+				new Spe(SpeCode.ARC, "Archer", "Archer", skillsARC),
+				new Spe(SpeCode.PRI, "Prêtre", "Priest", skillsPRI),
+				new Spe(SpeCode.WIZ, "Sorcier", "Wizard", skillsWIZ),
+				new Spe(SpeCode.VAM, "Vampire", "Vampire", skillsVAM),
+				new Spe(SpeCode.NEC, "Nécromancien", "Necromancer", skillsNEC),
+				new Spe(SpeCode.DRU, "Druide", "Druid", skillsDRU),
+				new Spe(SpeCode.BUT, "Boucher", "Butcher", skillsBUT),
+				new Spe(SpeCode.ASS, "Assassin", "Assassin", skillsASS));
 		return spes;
 	}
 }

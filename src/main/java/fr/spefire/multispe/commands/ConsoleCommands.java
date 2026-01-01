@@ -1,4 +1,4 @@
-package fr.spefire.multispe;
+package fr.spefire.multispe.commands;
 
 import java.io.File;
 import java.util.List;
@@ -12,7 +12,8 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import fr.spefire.multispe.models.LangType;
+import fr.spefire.multispe.MultiSpe;
+import fr.spefire.multispe.models.Language;
 import fr.spefire.multispe.models.Spe;
 
 public class ConsoleCommands implements Listener {
@@ -33,7 +34,7 @@ public class ConsoleCommands implements Listener {
 			FileConfiguration playersConfig = YamlConfiguration.loadConfiguration(playersFile);
 			String pSpe = playersConfig.getString(p.getName() + ".class");
 			String pLanguage = playersConfig.getString(p.getName() + ".language");
-			Boolean pIsFrench = LangType.FR.toString().equals(pLanguage);
+			Boolean pIsFrench = Language.FR.toString().equals(pLanguage);
 
 			List<Spe> spes = Spe.getAllSpes();
 			Spe spe = (pSpe != null) ? spes.stream().filter(s -> pSpe.equals(s.getId())).findFirst().orElse(null)

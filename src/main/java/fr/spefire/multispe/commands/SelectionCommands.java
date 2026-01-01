@@ -1,4 +1,4 @@
-package fr.spefire.multispe;
+package fr.spefire.multispe.commands;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +16,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 
-import fr.spefire.multispe.models.LangType;
+import fr.spefire.multispe.MultiSpe;
+import fr.spefire.multispe.models.Language;
 import fr.spefire.multispe.models.Skill;
 import fr.spefire.multispe.models.Spe;
 
@@ -49,7 +50,7 @@ public class SelectionCommands implements Listener {
 						: null;
 				if (spe != null) {
 					String pLanguage = playersConfig.getString(p.getName() + ".language");
-					Boolean pIsFrench = LangType.FR.toString().equals(pLanguage);
+					Boolean pIsFrench = Language.FR.toString().equals(pLanguage);
 					String skillPath = p.getName() + ".skill";
 					int indexSkill = playersConfig.getInt(skillPath);
 					if (indexSkill == 4) {

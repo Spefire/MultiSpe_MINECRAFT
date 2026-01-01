@@ -1,5 +1,5 @@
 package fr.spefire.multispe.models;
 
-public enum LangType {
+public enum Language {
 	FR, EN
 }

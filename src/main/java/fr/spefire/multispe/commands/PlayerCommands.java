@@ -1,4 +1,4 @@
-package fr.spefire.multispe;
+package fr.spefire.multispe.commands;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,9 +16,10 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.inventory.ItemStack;
 
-import fr.spefire.multispe.models.LangType;
+import fr.spefire.multispe.MultiSpe;
+import fr.spefire.multispe.models.Language;
 import fr.spefire.multispe.models.Spe;
-import fr.spefire.multispe.models.SpeType;
+import fr.spefire.multispe.models.SpeCode;
 
 public class PlayerCommands implements Listener {
 
@@ -61,7 +62,7 @@ public class PlayerCommands implements Listener {
 			FileConfiguration playersConfig = YamlConfiguration.loadConfiguration(playersFile);
 			String pSpe = playersConfig.getString(p.getName() + ".class");
 			String pLanguage = playersConfig.getString(p.getName() + ".language");
-			Boolean pIsFrench = LangType.FR.toString().equals(pLanguage);
+			Boolean pIsFrench = Language.FR.toString().equals(pLanguage);
 			File messagesFile = new File("plugins/MultiSpe/lang_messages.yml");
 			FileConfiguration messagesConfig = YamlConfiguration.loadConfiguration(messagesFile);
 
@@ -146,34 +147,34 @@ public class PlayerCommands implements Listener {
 				if (plugin.checkPerm(p, "multispe.stuff") || plugin.checkPerm(p, "multispe.admin")) {
 					if (pSpe != null) {
 						ItemStack item;
-						if (pSpe.equals(SpeType.WAR.toString())) {
+						if (pSpe.equals(SpeCode.WAR.toString())) {
 							item = new ItemStack(Material.STONE_SWORD);
 							p.getInventory().addItem(item);
-						} else if (pSpe.equals(SpeType.ARC.toString())) {
+						} else if (pSpe.equals(SpeCode.ARC.toString())) {
 							item = new ItemStack(Material.BOW);
 							p.getInventory().addItem(item);
 							item = new ItemStack(Material.ARROW);
 							item.setAmount(64);
 							p.getInventory().addItem(item);
-						} else if (pSpe.equals(SpeType.PRI.toString())) {
+						} else if (pSpe.equals(SpeCode.PRI.toString())) {
 							item = new ItemStack(Material.ROSE_BUSH);
 							p.getInventory().addItem(item);
-						} else if (pSpe.equals(SpeType.WIZ.toString())) {
+						} else if (pSpe.equals(SpeCode.WIZ.toString())) {
 							item = new ItemStack(Material.PAPER);
 							p.getInventory().addItem(item);
-						} else if (pSpe.equals(SpeType.VAM.toString())) {
+						} else if (pSpe.equals(SpeCode.VAM.toString())) {
 							item = new ItemStack(Material.STONE_HOE);
 							p.getInventory().addItem(item);
-						} else if (pSpe.equals(SpeType.NEC.toString())) {
+						} else if (pSpe.equals(SpeCode.NEC.toString())) {
 							item = new ItemStack(Material.FLINT);
 							p.getInventory().addItem(item);
-						} else if (pSpe.equals(SpeType.DRU.toString())) {
+						} else if (pSpe.equals(SpeCode.DRU.toString())) {
 							item = new ItemStack(Material.SUNFLOWER);
 							p.getInventory().addItem(item);
-						} else if (pSpe.equals(SpeType.BUT.toString())) {
+						} else if (pSpe.equals(SpeCode.BUT.toString())) {
 							item = new ItemStack(Material.STONE_AXE);
 							p.getInventory().addItem(item);
-						} else if (pSpe.equals(SpeType.ASS.toString())) {
+						} else if (pSpe.equals(SpeCode.ASS.toString())) {
 							item = new ItemStack(Material.STONE_SWORD);
 							p.getInventory().addItem(item);
 						}
@@ -219,7 +220,7 @@ public class PlayerCommands implements Listener {
 			// ----------------------------------------------------------------------------------------------------------------------
 			else if (params[0].equalsIgnoreCase("/msLanguage")) {
 				if (params.length == 2 && params[1].toLowerCase().startsWith("en")) {
-					playersConfig.set(p.getName() + ".language", LangType.EN.toString());
+					playersConfig.set(p.getName() + ".language", Language.EN.toString());
 					try {
 						playersConfig.save(playersFile);
 					} catch (IOException error) {
@@ -227,7 +228,7 @@ public class PlayerCommands implements Listener {
 					}
 					p.sendMessage(ChatColor.AQUA + "Now the plugin is in english");
 				} else if (params.length == 2 && params[1].toLowerCase().startsWith("fr")) {
-					playersConfig.set(p.getName() + ".language", LangType.FR.toString());
+					playersConfig.set(p.getName() + ".language", Language.FR.toString());
 					try {
 						playersConfig.save(playersFile);
 					} catch (IOException error) {

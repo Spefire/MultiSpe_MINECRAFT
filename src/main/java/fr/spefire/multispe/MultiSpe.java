@@ -13,7 +13,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.spefire.multispe.models.LangType;
+import fr.spefire.multispe.commands.ConsoleCommands;
+import fr.spefire.multispe.commands.PlayerCommands;
+import fr.spefire.multispe.commands.SelectionCommands;
+import fr.spefire.multispe.models.Language;
 import fr.spefire.multispe.models.Message;
 import fr.spefire.multispe.models.Skill;
 import fr.spefire.multispe.models.Spe;
@@ -50,7 +53,7 @@ public class MultiSpe extends JavaPlugin {
 				List<Spe> spes = Spe.getAllSpes();
 				String idsAsString = spes.stream().map(Spe::getId).collect(Collectors.joining(", ", "[", "]"));
 				FileConfiguration pluginConfig = plugin.getConfig();
-				pluginConfig.set("language", LangType.EN.toString());
+				pluginConfig.set("language", Language.EN.toString());
 				pluginConfig.set("tchat", true);
 				pluginConfig.set("cooldown", 5);
 				pluginConfig.set("selection", Material.SLIME_BALL.toString());
@@ -81,8 +84,8 @@ public class MultiSpe extends JavaPlugin {
 			if (!f.exists()) {
 				f.createNewFile();
 				FileConfiguration fileConfig = YamlConfiguration.loadConfiguration(f);
-				ConfigurationSection french = fileConfig.createSection(LangType.FR.toString());
-				ConfigurationSection english = fileConfig.createSection(LangType.EN.toString());
+				ConfigurationSection french = fileConfig.createSection(Language.FR.toString());
+				ConfigurationSection english = fileConfig.createSection(Language.EN.toString());
 				List<Spe> spes = Spe.getAllSpes();
 				for (Spe spe : spes) {
 					french.set(spe.getId(), spe.getDefaultFr());
@@ -103,8 +106,8 @@ public class MultiSpe extends JavaPlugin {
 			if (!f.exists()) {
 				f.createNewFile();
 				FileConfiguration fileConfig = YamlConfiguration.loadConfiguration(f);
-				ConfigurationSection french = fileConfig.createSection(LangType.FR.toString());
-				ConfigurationSection english = fileConfig.createSection(LangType.EN.toString());
+				ConfigurationSection french = fileConfig.createSection(Language.FR.toString());
+				ConfigurationSection english = fileConfig.createSection(Language.EN.toString());
 				List<Skill> skills = Skill.getAllSkills();
 				for (Skill skill : skills) {
 					french.set(skill.getId(), skill.getDefaultFr());
@@ -125,8 +128,8 @@ public class MultiSpe extends JavaPlugin {
 			if (!f.exists()) {
 				f.createNewFile();
 				FileConfiguration fileConfig = YamlConfiguration.loadConfiguration(f);
-				ConfigurationSection french = fileConfig.createSection(LangType.FR.toString());
-				ConfigurationSection english = fileConfig.createSection(LangType.EN.toString());
+				ConfigurationSection french = fileConfig.createSection(Language.FR.toString());
+				ConfigurationSection english = fileConfig.createSection(Language.EN.toString());
 				List<Message> messages = Message.getAllMessages();
 				for (Message msg : messages) {
 					french.set(msg.getKey(), msg.getFr());
