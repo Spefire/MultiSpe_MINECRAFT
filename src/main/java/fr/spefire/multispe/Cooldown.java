@@ -11,8 +11,8 @@ import org.bukkit.entity.Player;
 
 public class Cooldown extends Thread {
 
-	private MultiSpe plugin;
-	private Player p;
+	private final MultiSpe plugin;
+	private final Player p;
 
 	public Cooldown(MultiSpe plugin, Player p) {
 		this.plugin = plugin;

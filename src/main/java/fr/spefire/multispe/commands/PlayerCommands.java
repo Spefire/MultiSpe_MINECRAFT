@@ -13,7 +13,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.inventory.ItemStack;
 
 import fr.spefire.multispe.MultiSpe;
@@ -23,30 +22,10 @@ import fr.spefire.multispe.models.SpeCode;
 
 public class PlayerCommands implements Listener {
 
-	private MultiSpe plugin;
+	private final MultiSpe plugin;
 
 	public PlayerCommands(MultiSpe plugin) {
 		this.plugin = plugin;
-	}
-
-	@EventHandler(priority = EventPriority.MONITOR)
-	public void PlayerConnected(PlayerLoginEvent e) {
-		Player p = e.getPlayer();
-		File playersFile = new File("plugins/MultiSpe/players.yml");
-		FileConfiguration playersConfig = YamlConfiguration.loadConfiguration(playersFile);
-		String pLanguagePath = p.getName() + ".language";
-		String pLanguage = playersConfig.getString(pLanguagePath);
-		if (pLanguage == null) {
-			FileConfiguration pluginConfig = plugin.getConfig();
-			String defLanguage = pluginConfig.getString("language");
-			playersConfig.set(pLanguagePath, defLanguage);
-		}
-		playersConfig.set(p.getName() + ".loaded", true);
-		try {
-			playersConfig.save(playersFile);
-		} catch (IOException error) {
-			error.printStackTrace();
-		}
 	}
 
 	@EventHandler(priority = EventPriority.LOWEST)
@@ -190,7 +169,7 @@ public class PlayerCommands implements Listener {
 
 			// ----------------------------------------------------------------------------------------------------------------------
 			else if (params[0].equalsIgnoreCase("/msLocation")) {
-				boolean isActivated = pluginConfig.getBoolean(p.getWorld().toString());
+				boolean isActivated = pluginConfig.getBoolean("worlds." + p.getWorld().getName());
 				if (isActivated) {
 					p.sendMessage(ChatColor.AQUA + messagesConfig.getString(pLanguage + ".locationtrue"));
 				} else {
@@ -202,11 +181,11 @@ public class PlayerCommands implements Listener {
 			else if (params[0].equalsIgnoreCase("/msSetWorld")) {
 				if (plugin.checkPerm(p, "multispe.setworld") || plugin.checkPerm(p, "multispe.admin")) {
 					if (params.length == 2 && params[1].equalsIgnoreCase("true")) {
-						pluginConfig.set(p.getWorld().toString(), true);
+						pluginConfig.set("worlds." + p.getWorld().getName(), true);
 						plugin.saveConfig();
 						p.sendMessage(ChatColor.AQUA + messagesConfig.getString(pLanguage + ".worldtrue"));
 					} else if (params.length == 2 && params[1].equalsIgnoreCase("false")) {
-						pluginConfig.set(p.getWorld().toString(), false);
+						pluginConfig.set("worlds." + p.getWorld().getName(), false);
 						plugin.saveConfig();
 						p.sendMessage(ChatColor.AQUA + messagesConfig.getString(pLanguage + ".worldfalse"));
 					} else {

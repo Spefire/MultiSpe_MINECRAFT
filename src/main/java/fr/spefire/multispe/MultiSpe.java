@@ -3,7 +3,6 @@ package fr.spefire.multispe;
 import java.io.File;
 import java.util.Comparator;
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.bukkit.Material;
@@ -26,14 +25,12 @@ import fr.spefire.multispe.models.Spe;
 
 public class MultiSpe extends JavaPlugin {
 
-	private MultiSpe plugin;
+	private final MultiSpe plugin;
 	private ConsoleCommands consoleCmds;
 	private PlayerCommands playerCmds;
 	private SelectionCommands selectionCmds;
 	private AtkSkills atkSkills;
 	private ZoneSkills zoneSkills;
-
-	Logger log;
 
 	public MultiSpe() {
 		plugin = this;

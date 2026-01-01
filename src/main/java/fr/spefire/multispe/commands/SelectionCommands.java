@@ -23,8 +23,8 @@ import fr.spefire.multispe.models.Spe;
 
 public class SelectionCommands implements Listener {
 
-	private MultiSpe plugin;
-	private int nbSkills = 3;
+	private final MultiSpe plugin;
+	private final int nbSkills = 3;
 
 	public SelectionCommands(MultiSpe plugin) {
 		this.plugin = plugin;
@@ -33,47 +33,49 @@ public class SelectionCommands implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void onPlayerInteract(PlayerInteractEvent e) {
 		if (e.getHand() != EquipmentSlot.HAND
-				|| (e.getAction() != Action.RIGHT_CLICK_AIR && e.getAction() != Action.RIGHT_CLICK_BLOCK)) {
+				|| (e.getAction() != Action.RIGHT_CLICK_AIR && e.getAction() != Action.RIGHT_CLICK_BLOCK))
 			return;
-		}
+		//
 		Player p = e.getPlayer();
 		FileConfiguration pluginConfig = plugin.getConfig();
-		boolean isActivated = pluginConfig.getBoolean(p.getWorld().toString());
-		if (isActivated) {
-			String selection = pluginConfig.getString("selection");
-			ItemStack item = p.getInventory().getItemInMainHand();
-			if (item.getType().toString().equals(selection)) {
-				File playersFile = new File("plugins/MultiSpe/players.yml");
-				FileConfiguration playersConfig = YamlConfiguration.loadConfiguration(playersFile);
-				String pSpe = playersConfig.getString(p.getName() + ".class");
-				List<Spe> spes = Spe.getAllSpes();
-				Spe spe = (pSpe != null) ? spes.stream().filter(s -> pSpe.equals(s.getId())).findFirst().orElse(null)
-						: null;
-				if (spe != null) {
-					String pLanguage = playersConfig.getString(p.getName() + ".language");
-					Boolean pIsFrench = Language.FR.toString().equals(pLanguage);
-					String skillPath = p.getName() + ".skill";
-					Integer pIndexSkill = playersConfig.getInt(skillPath);
-					if (pIndexSkill == nbSkills) {
-						pIndexSkill = 0;
-					} else {
-						pIndexSkill++;
-					}
-					playersConfig.set(skillPath, pIndexSkill);
-					try {
-						playersConfig.save(playersFile);
-					} catch (IOException error) {
-						error.printStackTrace();
-					}
-					Skill skill = spe.getSkill(pIndexSkill);
-					if (pIndexSkill != 0) {
-						p.sendMessage(ChatColor.AQUA + "[" + skill.getType().toString() + "] " + ChatColor.WHITE
-								+ (pIsFrench ? skill.getNameFr() : skill.getNameEn()));
-					} else {
-						p.sendMessage(ChatColor.AQUA + (pIsFrench ? skill.getNameFr() : skill.getNameEn()));
-					}
-				}
-			}
+		boolean isActivated = pluginConfig.getBoolean("worlds." + p.getWorld().getName());
+		if (!isActivated)
+			return;
+		//
+		String selection = pluginConfig.getString("selection");
+		ItemStack item = p.getInventory().getItemInMainHand();
+		if (!item.getType().toString().equals(selection))
+			return;
+		//
+		File playersFile = new File("plugins/MultiSpe/players.yml");
+		FileConfiguration playersConfig = YamlConfiguration.loadConfiguration(playersFile);
+		String pSpe = playersConfig.getString(p.getName() + ".class");
+		List<Spe> spes = Spe.getAllSpes();
+		Spe spe = (pSpe != null) ? spes.stream().filter(s -> pSpe.equals(s.getId())).findFirst().orElse(null) : null;
+		if (spe == null)
+			return;
+		//
+		String pLanguage = playersConfig.getString(p.getName() + ".language");
+		Boolean pIsFrench = Language.FR.toString().equals(pLanguage);
+		String skillPath = p.getName() + ".skill";
+		Integer pIndexSkill = playersConfig.getInt(skillPath);
+		if (pIndexSkill == nbSkills) {
+			pIndexSkill = 0;
+		} else {
+			pIndexSkill++;
+		}
+		playersConfig.set(skillPath, pIndexSkill);
+		try {
+			playersConfig.save(playersFile);
+		} catch (IOException error) {
+			error.printStackTrace();
+		}
+		Skill skill = spe.getSkill(pIndexSkill);
+		if (pIndexSkill != 0) {
+			p.sendMessage(ChatColor.AQUA + "[" + skill.getType().toString() + "] " + ChatColor.WHITE
+					+ (pIsFrench ? skill.getNameFr() : skill.getNameEn()));
+		} else {
+			p.sendMessage(ChatColor.AQUA + (pIsFrench ? skill.getNameFr() : skill.getNameEn()));
 		}
 	}
 }
