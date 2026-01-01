@@ -7,6 +7,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -74,12 +75,12 @@ public class AtkSkills implements Listener {
 							needLoading = true;
 							m.damage(1);
 							m.setVelocity(p.getEyeLocation().getDirection());
-							m.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, second / 3, 20));
+							m.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, second / 3, 10));
 						}
 						if (skill.getId().equals("WAR_02")) {
 							needLoading = true;
 							m.getWorld().createExplosion(m.getLocation(), 0);
-							m.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, second / 3, 20));
+							m.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, second / 3, 10));
 							p.setVelocity(p.getEyeLocation().getDirection().multiply(5));
 						}
 					}
@@ -90,6 +91,69 @@ public class AtkSkills implements Listener {
 								+ (pIsFrench ? skill.getNameFr() : skill.getNameEn()));
 						Cooldown rt = new Cooldown(plugin, p);
 						rt.start();
+					}
+				}
+			}
+		}
+	}
+
+	@EventHandler(priority = EventPriority.NORMAL)
+	public void onPlayer(EntityDamageByEntityEvent event) {
+		Entity e = event.getEntity();
+		Entity d = event.getDamager();
+		if (d instanceof Arrow) {
+			Arrow a = (Arrow) d;
+			if (e instanceof LivingEntity && a.getShooter() instanceof Player) {
+				LivingEntity m = (LivingEntity) e;
+				Player p = (Player) a.getShooter();
+				FileConfiguration pluginConfig = plugin.getConfig();
+				boolean isActivated = pluginConfig.getBoolean(p.getWorld().toString());
+				if (isActivated) {
+					File playersFile = new File("plugins/MultiSpe/players.yml");
+					FileConfiguration playersConfig = YamlConfiguration.loadConfiguration(playersFile);
+					String pSpe = playersConfig.getString(p.getName() + ".class");
+					String pLanguage = playersConfig.getString(p.getName() + ".language");
+					Integer pIndexSkill = playersConfig.getInt(p.getName() + ".skill");
+					Boolean pIsLoaded = playersConfig.getBoolean(p.getName() + ".loaded");
+					Boolean pIsFrench = Language.FR.toString().equals(pLanguage);
+					if (pSpe != null && pIsLoaded) {
+						List<Spe> spes = Spe.getAllSpes();
+						Spe spe = (pSpe != null)
+								? spes.stream().filter(s -> pSpe.equals(s.getId())).findFirst().orElse(null)
+								: null;
+						if (spe == null) {
+							return;
+						}
+						Boolean needLoading = false;
+						Skill skill = spe.getSkill(pIndexSkill);
+						if (pSpe.equals(SpeCode.ARC.toString())) {
+							if (skill.getId().equals("ARC_01")) {
+								needLoading = true;
+								m.addPotionEffect(new PotionEffect(PotionEffectType.NAUSEA, 10 * second, 1));
+								m.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 10 * second, 0));
+								m.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 10 * second, 0));
+							}
+							if (skill.getId().equals("ARC_02")) {
+								needLoading = true;
+								p.getWorld().strikeLightningEffect(m.getLocation());
+								m.setFireTicks(5 * second);
+								m.damage(2);
+							}
+							if (skill.getId().equals("ARC_03")) {
+								needLoading = true;
+								m.getWorld().createExplosion(m.getLocation(), 0);
+								m.setVelocity(m.getLocation().getDirection());
+								m.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, second / 3, 10));
+							}
+							if (needLoading) {
+								File messagesFile = new File("plugins/MultiSpe/lang_messages.yml");
+								FileConfiguration messagesConfig = YamlConfiguration.loadConfiguration(messagesFile);
+								p.sendMessage(ChatColor.AQUA + messagesConfig.getString(pLanguage + ".touse")
+										+ ChatColor.WHITE + (pIsFrench ? skill.getNameFr() : skill.getNameEn()));
+								Cooldown rt = new Cooldown(plugin, p);
+								rt.start();
+							}
+						}
 					}
 				}
 			}

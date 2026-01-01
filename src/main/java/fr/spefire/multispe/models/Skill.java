@@ -61,9 +61,7 @@ public class Skill {
 				new Skill("WAR_02", "Tranché Explosif", "Explosive Slash", SkillType.ATK),
 				new Skill("ARC_01", "Flèche Confuse", "Confusing Arrow", SkillType.ATK),
 				new Skill("ARC_02", "Flèche de Foudre", "Lightning Arrow", SkillType.ATK),
-				new Skill("ARC_03", "Flèche Dégénérative", "Degenerating Arrow", SkillType.ATK),
-				new Skill("ARC_04", "Flèche Explosive", "Explosive Arrow", SkillType.ATK),
-				new Skill("PRI_01", "Renvoi", "Counter", SkillType.ATK),
+				new Skill("ARC_03", "Flèche Explosive", "Explosive Arrow", SkillType.ATK),
 				new Skill("NEC_01", "Faucheuse Obscure", "Dark Reaper", SkillType.ATK),
 				new Skill("VAM_01", "Baiser Vampirique", "Vampire Kiss", SkillType.ATK),
 				new Skill("DRU_01", "Jugement Dernier", "Last Judgment", SkillType.ATK),
@@ -74,8 +72,7 @@ public class Skill {
 
 				// --- DEF ---
 				new Skill("WAR_03", "Berserker", "Berserker", SkillType.DEF),
-				new Skill("WAR_04", "Saut Éclair", "Flash Jump", SkillType.DEF),
-				new Skill("VAM_04", "Chauve-souris", "Bat Form", SkillType.DEF),
+				new Skill("VAM_02", "Chauve-souris", "Bat Form", SkillType.DEF),
 				new Skill("DRU_02", "Saut Titanesque", "Titanic Leap", SkillType.DEF),
 				new Skill("DRU_03", "Vol du Jaguar", "Jaguar Flight", SkillType.DEF),
 				new Skill("BUT_03", "Rage", "Rage", SkillType.DEF),
@@ -86,17 +83,14 @@ public class Skill {
 				new Skill("WIZ_01", "Prison Temporelle", "Temporal Prison", SkillType.ZONE),
 				new Skill("WIZ_02", "Orage", "Storm", SkillType.ZONE),
 				new Skill("WIZ_03", "Embrasement", "Blaze", SkillType.ZONE),
-				new Skill("VAM_02", "Êtres Nocturnes", "Nocturnal Beings", SkillType.ZONE),
-				new Skill("VAM_03", "Drainage", "Drain", SkillType.ZONE),
-				new Skill("NEC_02", "Révélation", "Revelation", SkillType.ZONE),
-				new Skill("NEC_03", "Implosion", "Implosion", SkillType.ZONE),
+				new Skill("VAM_03", "Êtres Nocturnes", "Nocturnal Beings", SkillType.ZONE),
+				new Skill("NEC_02", "Réveil des morts", "Awakening of the dead", SkillType.ZONE),
 
 				// --- VIEW ---
-				new Skill("PRI_02", "Soin", "Heal", SkillType.VIEW),
-				new Skill("PRI_03", "Prière", "Prayer", SkillType.VIEW),
-				new Skill("PRI_04", "Dissipation", "Dispel", SkillType.VIEW),
-				new Skill("WIZ_04", "Luminos", "Luminos", SkillType.VIEW),
-				new Skill("NEC_04", "Malédiction", "Curse", SkillType.VIEW),
+				new Skill("PRI_01", "Soin", "Heal", SkillType.VIEW),
+				new Skill("PRI_02", "Prière", "Prayer", SkillType.VIEW),
+				new Skill("PRI_03", "Dissipation", "Dispel", SkillType.VIEW),
+				new Skill("NEC_03", "Malédiction", "Curse", SkillType.VIEW),
 				new Skill("DRU_04", "Communion Élémentaire", "Elemental Communion", SkillType.VIEW),
 				new Skill("ASS_04", "Traque", "Hunt", SkillType.VIEW));
 		return skills;

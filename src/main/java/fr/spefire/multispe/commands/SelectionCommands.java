@@ -24,6 +24,7 @@ import fr.spefire.multispe.models.Spe;
 public class SelectionCommands implements Listener {
 
 	private MultiSpe plugin;
+	private int nbSkills = 3;
 
 	public SelectionCommands(MultiSpe plugin) {
 		this.plugin = plugin;
@@ -53,7 +54,7 @@ public class SelectionCommands implements Listener {
 					Boolean pIsFrench = Language.FR.toString().equals(pLanguage);
 					String skillPath = p.getName() + ".skill";
 					Integer pIndexSkill = playersConfig.getInt(skillPath);
-					if (pIndexSkill == 4) {
+					if (pIndexSkill == nbSkills) {
 						pIndexSkill = 0;
 					} else {
 						pIndexSkill++;
