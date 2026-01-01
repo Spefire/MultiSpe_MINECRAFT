@@ -23,6 +23,7 @@ public class MultiSpe extends JavaPlugin {
 	private MultiSpe plugin;
 	private ConsoleCommands consoleCmds;
 	private PlayerCommands playerCmds;
+	private SelectionCommands selectionCmds;
 
 	Logger log;
 
@@ -38,6 +39,8 @@ public class MultiSpe extends JavaPlugin {
 		pm.registerEvents(consoleCmds, this);
 		playerCmds = new PlayerCommands(this);
 		pm.registerEvents(playerCmds, this);
+		selectionCmds = new SelectionCommands(this);
+		pm.registerEvents(selectionCmds, this);
 		plugin.saveConfig();
 
 		// ----------------------------------------------------------------------------------------------------------------------

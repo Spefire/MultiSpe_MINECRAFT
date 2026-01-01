@@ -99,4 +99,9 @@ public class Skill {
 				new Skill("07", "Traque", "Hunt", SkillType.VIEW));
 		return skills;
 	}
+
+	public static Skill getSkill(SkillType type, String id) {
+		return Skill.getAllSkills().stream().filter(s -> s.getType() == type && s.getId().equals(id)).findFirst()
+				.orElse(null);
+	}
 }

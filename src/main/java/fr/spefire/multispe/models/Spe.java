@@ -8,13 +8,15 @@ public class Spe {
 	private final String defaultEn;
 	private String nameFr;
 	private String nameEn;
+	private List<Skill> skills;
 
-	public Spe(SpeType type, String fr, String en) {
+	public Spe(SpeType type, String fr, String en, List<Skill> skills) {
 		this.type = type;
 		this.defaultFr = fr;
 		this.defaultEn = en;
 		this.nameFr = fr;
 		this.nameEn = en;
+		this.skills = skills;
 	}
 
 	public String getId() {
@@ -49,14 +51,49 @@ public class Spe {
 		this.nameEn = name;
 	}
 
+	public Skill getSkill(Integer index) {
+		return this.skills.get(index);
+	}
+
 	public static List<Spe> getAllSpes() {
+		List<Skill> skillsWAR = List.of(Skill.getSkill(SkillType.PASS, "NULL"), Skill.getSkill(SkillType.PASS, "NULL"),
+				Skill.getSkill(SkillType.PASS, "NULL"), Skill.getSkill(SkillType.PASS, "NULL"),
+				Skill.getSkill(SkillType.PASS, "NULL"));
+		List<Skill> skillsARC = List.of(Skill.getSkill(SkillType.PASS, "NULL"), Skill.getSkill(SkillType.PASS, "NULL"),
+				Skill.getSkill(SkillType.PASS, "NULL"), Skill.getSkill(SkillType.PASS, "NULL"),
+				Skill.getSkill(SkillType.PASS, "NULL"));
+		List<Skill> skillsPRI = List.of(Skill.getSkill(SkillType.PASS, "NULL"), Skill.getSkill(SkillType.PASS, "NULL"),
+				Skill.getSkill(SkillType.PASS, "NULL"), Skill.getSkill(SkillType.PASS, "NULL"),
+				Skill.getSkill(SkillType.PASS, "NULL"));
+		List<Skill> skillsWIZ = List.of(Skill.getSkill(SkillType.PASS, "NULL"), Skill.getSkill(SkillType.PASS, "NULL"),
+				Skill.getSkill(SkillType.PASS, "NULL"), Skill.getSkill(SkillType.PASS, "NULL"),
+				Skill.getSkill(SkillType.PASS, "NULL"));
+		List<Skill> skillsNEC = List.of(Skill.getSkill(SkillType.PASS, "NULL"), Skill.getSkill(SkillType.PASS, "NULL"),
+				Skill.getSkill(SkillType.PASS, "NULL"), Skill.getSkill(SkillType.PASS, "NULL"),
+				Skill.getSkill(SkillType.PASS, "NULL"));
+		List<Skill> skillsVAM = List.of(Skill.getSkill(SkillType.PASS, "NULL"), Skill.getSkill(SkillType.PASS, "NULL"),
+				Skill.getSkill(SkillType.PASS, "NULL"), Skill.getSkill(SkillType.PASS, "NULL"),
+				Skill.getSkill(SkillType.PASS, "NULL"));
+		List<Skill> skillsDRU = List.of(Skill.getSkill(SkillType.PASS, "NULL"), Skill.getSkill(SkillType.PASS, "NULL"),
+				Skill.getSkill(SkillType.PASS, "NULL"), Skill.getSkill(SkillType.PASS, "NULL"),
+				Skill.getSkill(SkillType.PASS, "NULL"));
+		List<Skill> skillsBUT = List.of(Skill.getSkill(SkillType.PASS, "NULL"), Skill.getSkill(SkillType.PASS, "NULL"),
+				Skill.getSkill(SkillType.PASS, "NULL"), Skill.getSkill(SkillType.PASS, "NULL"),
+				Skill.getSkill(SkillType.PASS, "NULL"));
+		List<Skill> skillsASS = List.of(Skill.getSkill(SkillType.PASS, "NULL"), Skill.getSkill(SkillType.PASS, "NULL"),
+				Skill.getSkill(SkillType.PASS, "NULL"), Skill.getSkill(SkillType.PASS, "NULL"),
+				Skill.getSkill(SkillType.PASS, "NULL"));
 		List<Spe> spes = List.of(
 				// --- SPES ---
-				new Spe(SpeType.WAR, "Guerrier", "Warrior"), new Spe(SpeType.ARC, "Archer", "Archer"),
-				new Spe(SpeType.PRI, "Prêtre", "Priest"), new Spe(SpeType.WIZ, "Sorcier", "Wizard"),
-				new Spe(SpeType.VAM, "Vampire", "Vampire"), new Spe(SpeType.NEC, "Nécromancien", "Necromancer"),
-				new Spe(SpeType.DRU, "Druide", "Druid"), new Spe(SpeType.BUT, "Boucher", "Butcher"),
-				new Spe(SpeType.ASS, "Assassin", "Assassin"));
+				new Spe(SpeType.WAR, "Guerrier", "Warrior", skillsWAR),
+				new Spe(SpeType.ARC, "Archer", "Archer", skillsARC),
+				new Spe(SpeType.PRI, "Prêtre", "Priest", skillsPRI),
+				new Spe(SpeType.WIZ, "Sorcier", "Wizard", skillsWIZ),
+				new Spe(SpeType.VAM, "Vampire", "Vampire", skillsVAM),
+				new Spe(SpeType.NEC, "Nécromancien", "Necromancer", skillsNEC),
+				new Spe(SpeType.DRU, "Druide", "Druid", skillsDRU),
+				new Spe(SpeType.BUT, "Boucher", "Butcher", skillsBUT),
+				new Spe(SpeType.ASS, "Assassin", "Assassin", skillsASS));
 		return spes;
 	}
 }
