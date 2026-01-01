@@ -47,9 +47,7 @@ public class PlayerCommands implements Listener {
 
 			// ----------------------------------------------------------------------------------------------------------------------
 			if (params[0].equalsIgnoreCase("/msStatus")) {
-				List<Spe> spes = Spe.getAllSpes();
-				Spe spe = (pSpe != null) ? spes.stream().filter(s -> pSpe.equals(s.getId())).findFirst().orElse(null)
-						: null;
+				Spe spe = Spe.getSpeById(pSpe);
 				if (spe != null) {
 					p.sendMessage(ChatColor.AQUA + messagesConfig.getString(pLanguage + ".tobe") + ChatColor.WHITE
 							+ (pIsFrench ? spe.getNameFr() : spe.getNameEn()));
@@ -139,7 +137,7 @@ public class PlayerCommands implements Listener {
 							item = new ItemStack(Material.ROSE_BUSH);
 							p.getInventory().addItem(item);
 						} else if (pSpe.equals(SpeCode.WIZ.toString())) {
-							item = new ItemStack(Material.PAPER);
+							item = new ItemStack(Material.STICK);
 							p.getInventory().addItem(item);
 						} else if (pSpe.equals(SpeCode.VAM.toString())) {
 							item = new ItemStack(Material.STONE_HOE);

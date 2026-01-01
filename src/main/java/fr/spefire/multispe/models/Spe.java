@@ -93,4 +93,8 @@ public class Spe {
 	public static List<Spe> getAllSpes() {
 		return ALL_SPES;
 	}
+
+	public static Spe getSpeById(String id) {
+		return ALL_SPES.stream().filter(s -> id.equals(s.getId())).findFirst().orElse(null);
+	}
 }

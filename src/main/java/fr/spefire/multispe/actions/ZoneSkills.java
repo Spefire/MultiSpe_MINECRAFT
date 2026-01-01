@@ -58,8 +58,7 @@ public class ZoneSkills implements Listener {
 		if (pSpe == null || !pIsLoaded)
 			return;
 		//
-		List<Spe> spes = Spe.getAllSpes();
-		Spe spe = (pSpe != null) ? spes.stream().filter(s -> pSpe.equals(s.getId())).findFirst().orElse(null) : null;
+		Spe spe = Spe.getSpeById(pSpe);
 		if (spe == null)
 			return;
 		//
@@ -68,7 +67,7 @@ public class ZoneSkills implements Listener {
 		ItemStack item = p.getInventory().getItemInMainHand();
 		Skill skill = spe.getSkill(pIndexSkill);
 		Boolean needLoading = false;
-		if (pSpe.equals(SpeCode.WIZ.toString()) && item.getType().toString().equals(Material.STICK.toString())) {
+		if (pSpe.equals(SpeCode.WIZ.toString()) && item.getType().equals(Material.STICK)) {
 			if (skill.getId().equals("WIZ_01")) {
 				needLoading = true;
 				for (LivingEntity entity : entities) {

@@ -1,7 +1,6 @@
 package fr.spefire.multispe.actions;
 
 import java.io.File;
-import java.util.List;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -59,21 +58,17 @@ public class AtkSkills implements Listener {
 		if (pSpe == null || !pIsLoaded)
 			return;
 		//
-		List<Spe> spes = Spe.getAllSpes();
-		Spe spe = (pSpe != null) ? spes.stream().filter(s -> pSpe.equals(s.getId())).findFirst().orElse(null) : null;
+		Spe spe = Spe.getSpeById(pSpe);
 		if (spe == null)
 			return;
 		//
 		ItemStack item = p.getInventory().getItemInMainHand();
 		Skill skill = spe.getSkill(pIndexSkill);
 		Boolean needLoading = false;
-		if (pSpe.equals(SpeCode.WAR.toString()) && (item.getType().toString().equals(Material.WOODEN_SWORD.toString())
-				|| item.getType().toString().equals(Material.STONE_SWORD.toString())
-				|| item.getType().toString().equals(Material.COPPER_SWORD.toString())
-				|| item.getType().toString().equals(Material.IRON_SWORD.toString())
-				|| item.getType().toString().equals(Material.GOLDEN_SWORD.toString())
-				|| item.getType().toString().equals(Material.DIAMOND_SWORD.toString())
-				|| item.getType().toString().equals(Material.NETHERITE_SWORD.toString()))) {
+		if (pSpe.equals(SpeCode.WAR.toString()) && (item.getType().equals(Material.WOODEN_SWORD)
+				|| item.getType().equals(Material.STONE_SWORD) || item.getType().equals(Material.COPPER_SWORD)
+				|| item.getType().equals(Material.IRON_SWORD) || item.getType().equals(Material.GOLDEN_SWORD)
+				|| item.getType().equals(Material.DIAMOND_SWORD) || item.getType().equals(Material.NETHERITE_SWORD))) {
 			if (skill.getId().equals("WAR_01")) {
 				needLoading = true;
 				m.damage(1);
@@ -125,8 +120,7 @@ public class AtkSkills implements Listener {
 		if (pSpe == null || !pIsLoaded)
 			return;
 		//
-		List<Spe> spes = Spe.getAllSpes();
-		Spe spe = (pSpe != null) ? spes.stream().filter(s -> pSpe.equals(s.getId())).findFirst().orElse(null) : null;
+		Spe spe = Spe.getSpeById(pSpe);
 		if (spe == null)
 			return;
 		//
