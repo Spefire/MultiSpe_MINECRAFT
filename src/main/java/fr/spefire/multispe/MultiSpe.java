@@ -1,6 +1,7 @@
 package fr.spefire.multispe;
 
 import java.io.File;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -13,6 +14,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import fr.spefire.multispe.actions.AtkSkills;
 import fr.spefire.multispe.commands.ConsoleCommands;
 import fr.spefire.multispe.commands.PlayerCommands;
 import fr.spefire.multispe.commands.SelectionCommands;
@@ -27,6 +29,7 @@ public class MultiSpe extends JavaPlugin {
 	private ConsoleCommands consoleCmds;
 	private PlayerCommands playerCmds;
 	private SelectionCommands selectionCmds;
+	private AtkSkills atkSkills;
 
 	Logger log;
 
@@ -44,6 +47,8 @@ public class MultiSpe extends JavaPlugin {
 		pm.registerEvents(playerCmds, this);
 		selectionCmds = new SelectionCommands(this);
 		pm.registerEvents(selectionCmds, this);
+		atkSkills = new AtkSkills(this);
+		pm.registerEvents(atkSkills, this);
 		plugin.saveConfig();
 
 		// ----------------------------------------------------------------------------------------------------------------------
@@ -55,7 +60,7 @@ public class MultiSpe extends JavaPlugin {
 				FileConfiguration pluginConfig = plugin.getConfig();
 				pluginConfig.set("language", Language.EN.toString());
 				pluginConfig.set("tchat", true);
-				pluginConfig.set("cooldown", 5);
+				pluginConfig.set("cooldown", 6);
 				pluginConfig.set("selection", Material.SLIME_BALL.toString());
 				pluginConfig.set("classes", idsAsString);
 				plugin.saveConfig();
@@ -86,7 +91,7 @@ public class MultiSpe extends JavaPlugin {
 				FileConfiguration fileConfig = YamlConfiguration.loadConfiguration(f);
 				ConfigurationSection french = fileConfig.createSection(Language.FR.toString());
 				ConfigurationSection english = fileConfig.createSection(Language.EN.toString());
-				List<Spe> spes = Spe.getAllSpes();
+				List<Spe> spes = Spe.getAllSpes().stream().sorted(Comparator.comparing(Spe::getId)).toList();
 				for (Spe spe : spes) {
 					french.set(spe.getId(), spe.getDefaultFr());
 					english.set(spe.getId(), spe.getDefaultEn());
@@ -108,7 +113,7 @@ public class MultiSpe extends JavaPlugin {
 				FileConfiguration fileConfig = YamlConfiguration.loadConfiguration(f);
 				ConfigurationSection french = fileConfig.createSection(Language.FR.toString());
 				ConfigurationSection english = fileConfig.createSection(Language.EN.toString());
-				List<Skill> skills = Skill.getAllSkills();
+				List<Skill> skills = Skill.getAllSkills().stream().sorted(Comparator.comparing(Skill::getId)).toList();
 				for (Skill skill : skills) {
 					french.set(skill.getId(), skill.getDefaultFr());
 					english.set(skill.getId(), skill.getDefaultEn());

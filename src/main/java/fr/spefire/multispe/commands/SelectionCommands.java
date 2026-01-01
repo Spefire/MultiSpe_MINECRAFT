@@ -37,9 +37,9 @@ public class SelectionCommands implements Listener {
 		}
 		Player p = e.getPlayer();
 		FileConfiguration pluginConfig = plugin.getConfig();
-		String selection = pluginConfig.getString("selection");
 		boolean isActivated = pluginConfig.getBoolean(p.getWorld().toString());
 		if (isActivated) {
+			String selection = pluginConfig.getString("selection");
 			ItemStack item = p.getInventory().getItemInMainHand();
 			if (item.getType().toString().equals(selection)) {
 				File playersFile = new File("plugins/MultiSpe/players.yml");
@@ -52,20 +52,20 @@ public class SelectionCommands implements Listener {
 					String pLanguage = playersConfig.getString(p.getName() + ".language");
 					Boolean pIsFrench = Language.FR.toString().equals(pLanguage);
 					String skillPath = p.getName() + ".skill";
-					int indexSkill = playersConfig.getInt(skillPath);
-					if (indexSkill == 4) {
-						indexSkill = 0;
+					Integer pIndexSkill = playersConfig.getInt(skillPath);
+					if (pIndexSkill == 4) {
+						pIndexSkill = 0;
 					} else {
-						indexSkill++;
+						pIndexSkill++;
 					}
-					playersConfig.set(skillPath, indexSkill);
+					playersConfig.set(skillPath, pIndexSkill);
 					try {
 						playersConfig.save(playersFile);
 					} catch (IOException error) {
 						error.printStackTrace();
 					}
-					Skill skill = spe.getSkill(indexSkill);
-					if (indexSkill != 0) {
+					Skill skill = spe.getSkill(pIndexSkill);
+					if (pIndexSkill != 0) {
 						p.sendMessage(ChatColor.AQUA + "[" + skill.getType().toString() + "] " + ChatColor.WHITE
 								+ (pIsFrench ? skill.getNameFr() : skill.getNameEn()));
 					} else {

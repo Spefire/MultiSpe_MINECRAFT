@@ -54,7 +54,7 @@ public class Skill {
 	public static List<Skill> getAllSkills() {
 		List<Skill> skills = List.of(
 				// --- PASS ---
-				new Skill("NULL", "Aucune capacité", "No ability", SkillType.PASS),
+				new Skill("XXX_00", "Aucune capacité", "No ability", SkillType.PASS),
 
 				// --- ATK ---
 				new Skill("WAR_01", "Coup Puissant", "Powerful Blow", SkillType.ATK),

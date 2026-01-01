@@ -57,55 +57,55 @@ public class Spe {
 
 	public static List<Spe> getAllSpes() {
 		List<Skill> skillsWAR = List.of( //
-				Skill.getSkill("NULL"), //
+				Skill.getSkill("XXX_00"), //
 				Skill.getSkill("WAR_01"), //
 				Skill.getSkill("WAR_02"), //
 				Skill.getSkill("WAR_03"), //
 				Skill.getSkill("WAR_04"));
 		List<Skill> skillsARC = List.of( //
-				Skill.getSkill("NULL"), //
+				Skill.getSkill("XXX_00"), //
 				Skill.getSkill("ARC_01"), //
 				Skill.getSkill("ARC_02"), //
 				Skill.getSkill("ARC_03"), //
 				Skill.getSkill("ARC_04"));
 		List<Skill> skillsPRI = List.of( //
-				Skill.getSkill("NULL"), //
+				Skill.getSkill("XXX_00"), //
 				Skill.getSkill("PRI_01"), //
 				Skill.getSkill("PRI_02"), //
 				Skill.getSkill("PRI_03"), //
 				Skill.getSkill("PRI_04"));
 		List<Skill> skillsWIZ = List.of( //
-				Skill.getSkill("NULL"), //
+				Skill.getSkill("XXX_00"), //
 				Skill.getSkill("WIZ_01"), //
 				Skill.getSkill("WIZ_02"), //
 				Skill.getSkill("WIZ_03"), //
 				Skill.getSkill("WIZ_04"));
 		List<Skill> skillsNEC = List.of( //
-				Skill.getSkill("NULL"), //
+				Skill.getSkill("XXX_00"), //
 				Skill.getSkill("NEC_01"), //
 				Skill.getSkill("NEC_02"), //
 				Skill.getSkill("NEC_03"), //
 				Skill.getSkill("NEC_04"));
 		List<Skill> skillsVAM = List.of( //
-				Skill.getSkill("NULL"), //
+				Skill.getSkill("XXX_00"), //
 				Skill.getSkill("VAM_01"), //
 				Skill.getSkill("VAM_02"), //
 				Skill.getSkill("VAM_03"), //
 				Skill.getSkill("VAM_04"));
 		List<Skill> skillsDRU = List.of( //
-				Skill.getSkill("NULL"), //
+				Skill.getSkill("XXX_00"), //
 				Skill.getSkill("DRU_01"), //
 				Skill.getSkill("DRU_02"), //
 				Skill.getSkill("DRU_03"), //
 				Skill.getSkill("DRU_04"));
 		List<Skill> skillsBUT = List.of( //
-				Skill.getSkill("NULL"), //
+				Skill.getSkill("XXX_00"), //
 				Skill.getSkill("BUT_01"), //
 				Skill.getSkill("BUT_02"), //
 				Skill.getSkill("BUT_03"), //
 				Skill.getSkill("BUT_04"));
 		List<Skill> skillsASS = List.of( //
-				Skill.getSkill("NULL"), //
+				Skill.getSkill("XXX_00"), //
 				Skill.getSkill("ASS_01"), //
 				Skill.getSkill("ASS_02"), //
 				Skill.getSkill("ASS_03"), //

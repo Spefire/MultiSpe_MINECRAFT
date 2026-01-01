@@ -41,7 +41,7 @@ public class PlayerCommands implements Listener {
 			String defLanguage = pluginConfig.getString("language");
 			playersConfig.set(pLanguagePath, defLanguage);
 		}
-		playersConfig.set(p.getName() + ".loading", true);
+		playersConfig.set(p.getName() + ".loaded", true);
 		try {
 			playersConfig.save(playersFile);
 		} catch (IOException error) {
