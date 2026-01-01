@@ -65,7 +65,7 @@ public class SelectionCommands implements Listener {
 					}
 					Skill skill = spe.getSkill(indexSkill);
 					if (indexSkill != 0) {
-						p.sendMessage(ChatColor.AQUA + "[" + skill.getType().toString() + "]" + ChatColor.WHITE
+						p.sendMessage(ChatColor.AQUA + "[" + skill.getType().toString() + "] " + ChatColor.WHITE
 								+ (pIsFrench ? skill.getNameFr() : skill.getNameEn()));
 					} else {
 						p.sendMessage(ChatColor.AQUA + (pIsFrench ? skill.getNameFr() : skill.getNameEn()));

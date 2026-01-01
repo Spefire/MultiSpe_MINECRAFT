@@ -57,51 +57,52 @@ public class Skill {
 				new Skill("NULL", "Aucune capacité", "No ability", SkillType.PASS),
 
 				// --- ATK ---
-				new Skill("01", "Coup Puissant", "Powerful Blow", SkillType.ATK),
-				new Skill("02", "Tranché Explosif", "Explosive Slash", SkillType.ATK),
-				new Skill("03", "Renvoi", "Counter", SkillType.ATK),
-				new Skill("04", "Faucheuse Obscure", "Dark Reaper", SkillType.ATK),
-				new Skill("05", "Baiser Vampirique", "Vampire Kiss", SkillType.ATK),
-				new Skill("06", "Jugement Dernier", "Last Judgment", SkillType.ATK),
-				new Skill("07", "Flèche Confuse", "Confusing Arrow", SkillType.ATK),
-				new Skill("08", "Flèche de Foudre", "Lightning Arrow", SkillType.ATK),
-				new Skill("09", "Flèche Dégénérative", "Degenerating Arrow", SkillType.ATK),
-				new Skill("10", "Flèche Explosive", "Explosive Arrow", SkillType.ATK),
-				new Skill("11", "Coup Étourdissant", "Stunning Strike", SkillType.ATK),
-				new Skill("12", "Vol de Vie", "Life Steal", SkillType.ATK),
-				new Skill("13", "Lame Empoisonnée", "Poisoned Blade", SkillType.ATK),
-				new Skill("14", "Coup Traître", "Treacherous Strike", SkillType.ATK),
+				new Skill("WAR_01", "Coup Puissant", "Powerful Blow", SkillType.ATK),
+				new Skill("WAR_02", "Tranché Explosif", "Explosive Slash", SkillType.ATK),
+				new Skill("ARC_01", "Flèche Confuse", "Confusing Arrow", SkillType.ATK),
+				new Skill("ARC_02", "Flèche de Foudre", "Lightning Arrow", SkillType.ATK),
+				new Skill("ARC_03", "Flèche Dégénérative", "Degenerating Arrow", SkillType.ATK),
+				new Skill("ARC_04", "Flèche Explosive", "Explosive Arrow", SkillType.ATK),
+				new Skill("PRI_01", "Renvoi", "Counter", SkillType.ATK),
+				new Skill("NEC_01", "Faucheuse Obscure", "Dark Reaper", SkillType.ATK),
+				new Skill("VAM_01", "Baiser Vampirique", "Vampire Kiss", SkillType.ATK),
+				new Skill("DRU_01", "Jugement Dernier", "Last Judgment", SkillType.ATK),
+				new Skill("BUT_01", "Coup Étourdissant", "Stunning Strike", SkillType.ATK),
+				new Skill("BUT_02", "Vol de Vie", "Life Steal", SkillType.ATK),
+				new Skill("ASS_01", "Lame Empoisonnée", "Poisoned Blade", SkillType.ATK),
+				new Skill("ASS_02", "Coup Traître", "Treacherous Strike", SkillType.ATK),
 
 				// --- DEF ---
-				new Skill("01", "Saut Titanesque", "Titanic Leap", SkillType.DEF),
-				new Skill("02", "Vol du Jaguar", "Jaguar Flight", SkillType.DEF),
-				new Skill("03", "Berserker", "Berserker", SkillType.DEF),
-				new Skill("04", "Saut Éclair", "Flash Jump", SkillType.DEF),
-				new Skill("05", "Chauve-souris", "Bat Form", SkillType.DEF),
-				new Skill("06", "Rage", "Rage", SkillType.DEF), new Skill("07", "Dopage", "Doping", SkillType.DEF),
-				new Skill("08", "Invisibilité", "Invisibility", SkillType.DEF),
+				new Skill("WAR_03", "Berserker", "Berserker", SkillType.DEF),
+				new Skill("WAR_04", "Saut Éclair", "Flash Jump", SkillType.DEF),
+				new Skill("VAM_04", "Chauve-souris", "Bat Form", SkillType.DEF),
+				new Skill("DRU_02", "Saut Titanesque", "Titanic Leap", SkillType.DEF),
+				new Skill("DRU_03", "Vol du Jaguar", "Jaguar Flight", SkillType.DEF),
+				new Skill("BUT_03", "Rage", "Rage", SkillType.DEF),
+				new Skill("BUT_04", "Dopage", "Doping", SkillType.DEF),
+				new Skill("ASS_03", "Invisibilité", "Invisibility", SkillType.DEF),
 
 				// --- ZONE ---
-				new Skill("01", "Êtres Nocturnes", "Nocturnal Beings", SkillType.ZONE),
-				new Skill("02", "Prison Temporelle", "Temporal Prison", SkillType.ZONE),
-				new Skill("03", "Orage", "Storm", SkillType.ZONE),
-				new Skill("04", "Embrasement", "Blaze", SkillType.ZONE),
-				new Skill("05", "Drainage", "Drain", SkillType.ZONE),
-				new Skill("06", "Révélation", "Revelation", SkillType.ZONE),
-				new Skill("07", "Implosion", "Implosion", SkillType.ZONE),
+				new Skill("WIZ_01", "Prison Temporelle", "Temporal Prison", SkillType.ZONE),
+				new Skill("WIZ_02", "Orage", "Storm", SkillType.ZONE),
+				new Skill("WIZ_03", "Embrasement", "Blaze", SkillType.ZONE),
+				new Skill("VAM_02", "Êtres Nocturnes", "Nocturnal Beings", SkillType.ZONE),
+				new Skill("VAM_03", "Drainage", "Drain", SkillType.ZONE),
+				new Skill("NEC_02", "Révélation", "Revelation", SkillType.ZONE),
+				new Skill("NEC_03", "Implosion", "Implosion", SkillType.ZONE),
 
 				// --- VIEW ---
-				new Skill("01", "Soin", "Heal", SkillType.VIEW), new Skill("02", "Prière", "Prayer", SkillType.VIEW),
-				new Skill("03", "Dissipation", "Dispel", SkillType.VIEW),
-				new Skill("04", "Luminos", "Luminos", SkillType.VIEW),
-				new Skill("05", "Malédiction", "Curse", SkillType.VIEW),
-				new Skill("06", "Communion Élémentaire", "Elemental Communion", SkillType.VIEW),
-				new Skill("07", "Traque", "Hunt", SkillType.VIEW));
+				new Skill("PRI_02", "Soin", "Heal", SkillType.VIEW),
+				new Skill("PRI_03", "Prière", "Prayer", SkillType.VIEW),
+				new Skill("PRI_04", "Dissipation", "Dispel", SkillType.VIEW),
+				new Skill("WIZ_04", "Luminos", "Luminos", SkillType.VIEW),
+				new Skill("NEC_04", "Malédiction", "Curse", SkillType.VIEW),
+				new Skill("DRU_04", "Communion Élémentaire", "Elemental Communion", SkillType.VIEW),
+				new Skill("ASS_04", "Traque", "Hunt", SkillType.VIEW));
 		return skills;
 	}
 
-	public static Skill getSkill(SkillType type, String id) {
-		return Skill.getAllSkills().stream().filter(s -> s.getType() == type && s.getId().equals(id)).findFirst()
-				.orElse(null);
+	public static Skill getSkill(String id) {
+		return Skill.getAllSkills().stream().filter(s -> s.getId().equals(id)).findFirst().orElse(null);
 	}
 }
