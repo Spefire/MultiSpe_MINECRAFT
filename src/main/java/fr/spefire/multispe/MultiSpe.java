@@ -28,7 +28,6 @@ public class MultiSpe extends JavaPlugin {
 
 	private final MultiSpe plugin;
 	private ConsoleCommands consoleCmds;
-	private PlayerCommands playerCmds;
 	private SelectionCommands selectionCmds;
 	private AtkSkills atkSkills;
 	private DefSkills defSkills;
@@ -44,10 +43,16 @@ public class MultiSpe extends JavaPlugin {
 		PluginManager pm = getServer().getPluginManager();
 		consoleCmds = new ConsoleCommands(this);
 		pm.registerEvents(consoleCmds, this);
-		playerCmds = new PlayerCommands(this);
-		pm.registerEvents(playerCmds, this);
 		selectionCmds = new SelectionCommands(this);
 		pm.registerEvents(selectionCmds, this);
+		getCommand("ms").setExecutor(new PlayerCommands(this));
+		getCommand("msStatus").setExecutor(new PlayerCommands(this));
+		getCommand("msClass").setExecutor(new PlayerCommands(this));
+		getCommand("msUnclass").setExecutor(new PlayerCommands(this));
+		getCommand("msStuff").setExecutor(new PlayerCommands(this));
+		getCommand("msLanguage").setExecutor(new PlayerCommands(this));
+		getCommand("msLocation").setExecutor(new PlayerCommands(this));
+		getCommand("msSetWorld").setExecutor(new PlayerCommands(this));
 		atkSkills = new AtkSkills(this);
 		pm.registerEvents(atkSkills, this);
 		defSkills = new DefSkills(this);
