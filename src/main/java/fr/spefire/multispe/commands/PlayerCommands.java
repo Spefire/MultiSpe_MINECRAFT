@@ -58,8 +58,9 @@ public class PlayerCommands implements Listener {
 
 			// ----------------------------------------------------------------------------------------------------------------------
 			else if (params[0].equalsIgnoreCase("/msClass")) {
-				if (plugin.checkPerm(p, "multispe.admin") || (pSpe == null && plugin.checkPerm(p, "multispe.add.class"))
+				if ((pSpe == null && plugin.checkPerm(p, "multispe.add.class"))
 						|| (pSpe != null || plugin.checkPerm(p, "multispe.change.class"))) {
+					Boolean noMatch = true;
 					if (params.length == 2) {
 						String speWanted = params[1].toLowerCase();
 						List<Spe> spes = Spe.getAllSpes();
@@ -69,9 +70,8 @@ public class PlayerCommands implements Listener {
 						for (Spe spe : spes) {
 							if (speWanted.equalsIgnoreCase(spe.getNameFr())
 									|| speWanted.equalsIgnoreCase(spe.getNameEn())) {
-								if (plugin.checkPerm(p, "multispe.class." + spe.getId().toLowerCase())
-										|| plugin.checkPerm(p, "multispe.class.all")
-										|| plugin.checkPerm(p, "multispe.admin")) {
+								noMatch = false;
+								if (plugin.checkPerm(p, "multispe.class." + spe.getId().toLowerCase())) {
 									playersConfig.set(p.getName() + ".class", spe.getId());
 									try {
 										playersConfig.save(playersFile);
@@ -87,8 +87,12 @@ public class PlayerCommands implements Listener {
 								}
 							}
 						}
-					} else {
-						p.sendMessage(ChatColor.RED + "/msClass <???>");
+					}
+					if (noMatch) {
+						p.sendMessage(ChatColor.RED + "/msClass <"
+								+ (pIsFrench ? "Guerrier|Archer|Prêtre|Sorcier|Nécromancien"
+										: "Warrior|Archer|Priest|Wizard|Necromancer")
+								+ ">");
 					}
 				} else {
 					if (pSpe == null && plugin.checkPerm(p, "multispe.add.class")) {
@@ -102,7 +106,7 @@ public class PlayerCommands implements Listener {
 
 			// ----------------------------------------------------------------------------------------------------------------------
 			else if (params[0].equalsIgnoreCase("/msUnclass")) {
-				if (plugin.checkPerm(p, "multispe.remove.class") || plugin.checkPerm(p, "multispe.admin")) {
+				if (plugin.checkPerm(p, "multispe.remove.class")) {
 					if (pSpe != null) {
 						playersConfig.set(p.getName() + ".class", null);
 						try {
@@ -121,7 +125,7 @@ public class PlayerCommands implements Listener {
 
 			// ----------------------------------------------------------------------------------------------------------------------
 			else if (params[0].equalsIgnoreCase("/msStuff")) {
-				if (plugin.checkPerm(p, "multispe.stuff") || plugin.checkPerm(p, "multispe.admin")) {
+				if (plugin.checkPerm(p, "multispe.stuff")) {
 					if (pSpe != null) {
 						ItemStack item;
 						if (pSpe.equals(SpeCode.WAR.toString())) {
@@ -168,7 +172,7 @@ public class PlayerCommands implements Listener {
 
 			// ----------------------------------------------------------------------------------------------------------------------
 			else if (params[0].equalsIgnoreCase("/msSetWorld")) {
-				if (plugin.checkPerm(p, "multispe.setworld") || plugin.checkPerm(p, "multispe.admin")) {
+				if (plugin.checkPerm(p, "multispe.setworld")) {
 					if (params.length == 2 && params[1].equalsIgnoreCase("true")) {
 						pluginConfig.set("worlds." + p.getWorld().getName(), true);
 						plugin.saveConfig();
@@ -210,17 +214,20 @@ public class PlayerCommands implements Listener {
 
 			// ----------------------------------------------------------------------------------------------------------------------
 			else {
-				Boolean canUnclass = plugin.checkPerm(p, "multispe.remove.class")
-						|| plugin.checkPerm(p, "multispe.admin");
-				Boolean canStuff = plugin.checkPerm(p, "multispe.stuff") || plugin.checkPerm(p, "multispe.admin");
-				Boolean canSetWorld = plugin.checkPerm(p, "multispe.setworld") || plugin.checkPerm(p, "multispe.admin");
+				Boolean canClass = plugin.checkPerm(p, "multispe.add.class")
+						|| plugin.checkPerm(p, "multispe.change.class");
+				Boolean canUnclass = plugin.checkPerm(p, "multispe.remove.class");
+				Boolean canStuff = plugin.checkPerm(p, "multispe.stuff");
+				Boolean canSetWorld = plugin.checkPerm(p, "multispe.setworld");
 				if (pIsFrench) {
 					p.sendMessage(ChatColor.AQUA + "                          ");
 					p.sendMessage(ChatColor.AQUA + "---------" + ChatColor.WHITE + "[MultiSpe] - Aide" + ChatColor.AQUA
 							+ "--------------");
 					p.sendMessage(ChatColor.AQUA + "                          ");
 					p.sendMessage(ChatColor.AQUA + "/msStatus: " + ChatColor.WHITE + "Savoir sa classe");
-					p.sendMessage(ChatColor.AQUA + "/msClass: " + ChatColor.WHITE + "Choisir sa classe");
+					if (canClass) {
+						p.sendMessage(ChatColor.AQUA + "/msClass: " + ChatColor.WHITE + "Choisir sa classe");
+					}
 					if (canUnclass) {
 						p.sendMessage(ChatColor.AQUA + "/msUnclass: " + ChatColor.WHITE + "Supprimer sa classe");
 					}
@@ -240,7 +247,9 @@ public class PlayerCommands implements Listener {
 							+ "--------------");
 					p.sendMessage(ChatColor.AQUA + "                          ");
 					p.sendMessage(ChatColor.AQUA + "/msStatus: " + ChatColor.WHITE + "To know your class");
-					p.sendMessage(ChatColor.AQUA + "/msClass: " + ChatColor.WHITE + "To choice your class");
+					if (canClass) {
+						p.sendMessage(ChatColor.AQUA + "/msClass: " + ChatColor.WHITE + "To choice your class");
+					}
 					if (canUnclass) {
 						p.sendMessage(ChatColor.AQUA + "/msUnclass: " + ChatColor.WHITE + "To remove your class");
 					}

@@ -160,10 +160,10 @@ public class MultiSpe extends JavaPlugin {
 	}
 
 	public boolean checkPerm(Player p, String perm) {
-		if (!p.isOp()) {
-			return false;
-		} else {
+		if (p.isOp() || p.hasPermission("multispe.admin") || p.hasPermission(perm)) {
 			return true;
+		} else {
+			return false;
 		}
 	}
 }

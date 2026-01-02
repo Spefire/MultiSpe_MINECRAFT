@@ -1,33 +1,79 @@
 name: MultiSpe
+description: "Multi classes plugin with skills"
 main: fr.spefire.multispe.MultiSpe
 version: 1.0
 api-version: '1.21'
 author: Spefire
 commands:
   ms:
-    description: The plugin help
-    usage: /ms
-  msHelp:
-    description: The plugin help
-    usage: /msHelp
+    description: "The plugin help"
+    usage: "/ms"
+    aliases: [mshelp]
   msStatus:
-    description: To know your class
-    usage: /msStatus
+    description: "To know your class"
+    usage: "/msStatus"
   msClass:
-    description: To choice your class
-    usage: /msClass <???>
+    description: "To choice your class"
+    usage: "/msClass <Warrior|Archer|Priest|Wizard|Necromancer>"
   msUnclass:
-    description: To remove your class
-    usage: /msUnclass
+    description: "To remove your class"
+    usage: "/msUnclass"
   msStuff:
-    description: To get your stuff
-    usage: /msStuff
+    description: "To get your stuff"
+    usage: "/msStuff"
   msLanguage:
-    description: To change your language
-    usage: /msLanguage <english|french>
+    description: "To change your language"
+    usage: "/msLanguage <en|fr>"
   msLocation:
-    description: To know if the plugin is actived at your location
-    usage: /msLocation
+    description: "To know if the plugin is actived at your location"
+    usage: "/msLocation"
   msSetWorld:
-    description: To enable or disable the plugin in this world
-    usage: /msSetWorld <true/false>
+    description: "To enable or disable the plugin in this world"
+    usage: "/msSetWorld <true/false>"
+permissions:
+  multispe.admin:
+    description: "Can use all commands"
+    default: op
+  multispe.add.class:
+    description: "Can select a new class"
+    default: false
+  multispe.change.class:
+    description: "Can choose another class"
+    default: false
+  multispe.remove.class:
+    description: "Can remove the class"
+    default: false
+  multispe.class.*:
+    description: "Can select all classes"
+    default: false
+    children:
+      multispe.class.war: true
+      multispe.class.arc: true
+      multispe.class.pri: true
+      multispe.class.wiz: true
+      multispe.class.dru: true
+      multispe.class.nec: true
+  multispe.class.war:
+    description: "Can select the Warrior class"
+    default: false
+  multispe.class.arc:
+    description: "Can select the Archer class"
+    default: false
+  multispe.class.pri:
+    description: "Can select the Priest class"
+    default: false
+  multispe.class.wiz:
+    description: "Can select the Wizard class"
+    default: false
+  multispe.class.dru:
+    description: "Can select the Druid class"
+    default: false
+  multispe.class.nec:
+    description: "Can select the Necromancer class"
+    default: false
+  multispe.stuff:
+    description: "Can get the items for the class"
+    default: false
+  multispe.setworld:
+    description: "Can set the plugin activated on this world"
+    default: op
