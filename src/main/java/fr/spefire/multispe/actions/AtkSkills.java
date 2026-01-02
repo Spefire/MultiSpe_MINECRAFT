@@ -71,15 +71,40 @@ public class AtkSkills implements Listener {
 				|| item.getType().equals(Material.DIAMOND_SWORD) || item.getType().equals(Material.NETHERITE_SWORD))) {
 			if (skill.getId().equals("WAR_01")) {
 				needLoading = true;
-				m.damage(1);
 				m.setVelocity(p.getEyeLocation().getDirection());
-				m.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, second / 3, 10));
+				m.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, second / 3, 20));
+				m.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 10 * second, 0));
+				m.addPotionEffect(new PotionEffect(PotionEffectType.INSTANT_DAMAGE, 1, 0));
 			}
 			if (skill.getId().equals("WAR_02")) {
 				needLoading = true;
 				m.getWorld().createExplosion(m.getLocation(), 0);
-				m.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, second / 3, 10));
+				m.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, second / 3, 20));
 				p.setVelocity(p.getEyeLocation().getDirection().multiply(5));
+			}
+		}
+		if (pSpe.equals(SpeCode.DRU.toString()) && item.getType().equals(Material.BONE)) {
+			if (skill.getId().equals("DRU_01")) {
+				needLoading = true;
+				p.getWorld().strikeLightningEffect(m.getLocation());
+				m.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 10 * second, 20));
+				m.setFireTicks(10 * second);
+				m.damage(2);
+			}
+		}
+		if (pSpe.equals(SpeCode.NEC.toString()) && (item.getType().equals(Material.WOODEN_HOE)
+				|| item.getType().equals(Material.STONE_HOE) || item.getType().equals(Material.COPPER_HOE)
+				|| item.getType().equals(Material.IRON_HOE) || item.getType().equals(Material.GOLDEN_HOE)
+				|| item.getType().equals(Material.DIAMOND_HOE) || item.getType().equals(Material.NETHERITE_HOE))) {
+			if (skill.getId().equals("NEC_01")) {
+				needLoading = true;
+				m.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 5 * second, 2));
+				m.addPotionEffect(new PotionEffect(PotionEffectType.DARKNESS, 10 * second, 2));
+			}
+			if (skill.getId().equals("NEC_02")) {
+				needLoading = true;
+				p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 10 * second, 0));
+				m.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 10 * second, 0));
 			}
 		}
 		if (needLoading) {
@@ -129,21 +154,26 @@ public class AtkSkills implements Listener {
 		if (pSpe.equals(SpeCode.ARC.toString())) {
 			if (skill.getId().equals("ARC_01")) {
 				needLoading = true;
-				m.addPotionEffect(new PotionEffect(PotionEffectType.NAUSEA, 10 * second, 1));
+				m.addPotionEffect(new PotionEffect(PotionEffectType.NAUSEA, 10 * second, 2));
 				m.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 10 * second, 0));
-				m.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 10 * second, 0));
 			}
 			if (skill.getId().equals("ARC_02")) {
 				needLoading = true;
 				p.getWorld().strikeLightningEffect(m.getLocation());
-				m.setFireTicks(5 * second);
+				m.setFireTicks(10 * second);
 				m.damage(2);
 			}
 			if (skill.getId().equals("ARC_03")) {
 				needLoading = true;
+				m.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 5 * second, 3));
+				m.addPotionEffect(new PotionEffect(PotionEffectType.MINING_FATIGUE, 5 * second, 3));
+				m.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 5 * second, 3));
+			}
+			if (skill.getId().equals("ARC_04")) {
+				needLoading = true;
 				m.getWorld().createExplosion(m.getLocation(), 0);
 				m.setVelocity(m.getLocation().getDirection());
-				m.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, second / 3, 10));
+				m.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, second / 3, 20));
 			}
 		}
 		if (needLoading) {

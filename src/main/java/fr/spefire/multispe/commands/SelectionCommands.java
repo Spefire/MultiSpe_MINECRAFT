@@ -24,7 +24,7 @@ import fr.spefire.multispe.models.Spe;
 public class SelectionCommands implements Listener {
 
 	private final MultiSpe plugin;
-	private final int nbSkills = 3;
+	private final int nbSkills = 4;
 
 	public SelectionCommands(MultiSpe plugin) {
 		this.plugin = plugin;

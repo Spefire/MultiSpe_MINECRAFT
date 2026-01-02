@@ -134,25 +134,16 @@ public class PlayerCommands implements Listener {
 							item.setAmount(64);
 							p.getInventory().addItem(item);
 						} else if (pSpe.equals(SpeCode.PRI.toString())) {
-							item = new ItemStack(Material.ROSE_BUSH);
+							item = new ItemStack(Material.PAPER);
 							p.getInventory().addItem(item);
 						} else if (pSpe.equals(SpeCode.WIZ.toString())) {
 							item = new ItemStack(Material.STICK);
 							p.getInventory().addItem(item);
-						} else if (pSpe.equals(SpeCode.VAM.toString())) {
-							item = new ItemStack(Material.STONE_HOE);
+						} else if (pSpe.equals(SpeCode.DRU.toString())) {
+							item = new ItemStack(Material.BONE);
 							p.getInventory().addItem(item);
 						} else if (pSpe.equals(SpeCode.NEC.toString())) {
-							item = new ItemStack(Material.FLINT);
-							p.getInventory().addItem(item);
-						} else if (pSpe.equals(SpeCode.DRU.toString())) {
-							item = new ItemStack(Material.SUNFLOWER);
-							p.getInventory().addItem(item);
-						} else if (pSpe.equals(SpeCode.BUT.toString())) {
-							item = new ItemStack(Material.STONE_AXE);
-							p.getInventory().addItem(item);
-						} else if (pSpe.equals(SpeCode.ASS.toString())) {
-							item = new ItemStack(Material.STONE_SWORD);
+							item = new ItemStack(Material.STONE_HOE);
 							p.getInventory().addItem(item);
 						}
 						item = new ItemStack(Material.SLIME_BALL);

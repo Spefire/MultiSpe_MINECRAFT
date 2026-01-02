@@ -14,6 +14,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.spefire.multispe.actions.AtkSkills;
+import fr.spefire.multispe.actions.DefSkills;
 import fr.spefire.multispe.actions.ZoneSkills;
 import fr.spefire.multispe.commands.ConsoleCommands;
 import fr.spefire.multispe.commands.PlayerCommands;
@@ -30,6 +31,7 @@ public class MultiSpe extends JavaPlugin {
 	private PlayerCommands playerCmds;
 	private SelectionCommands selectionCmds;
 	private AtkSkills atkSkills;
+	private DefSkills defSkills;
 	private ZoneSkills zoneSkills;
 
 	public MultiSpe() {
@@ -48,6 +50,8 @@ public class MultiSpe extends JavaPlugin {
 		pm.registerEvents(selectionCmds, this);
 		atkSkills = new AtkSkills(this);
 		pm.registerEvents(atkSkills, this);
+		defSkills = new DefSkills(this);
+		pm.registerEvents(defSkills, this);
 		zoneSkills = new ZoneSkills(this);
 		pm.registerEvents(zoneSkills, this);
 		plugin.saveConfig();

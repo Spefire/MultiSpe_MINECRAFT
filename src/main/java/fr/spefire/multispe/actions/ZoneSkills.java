@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Particle;
+import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.LivingEntity;
@@ -71,24 +73,33 @@ public class ZoneSkills implements Listener {
 			if (skill.getId().equals("WIZ_01")) {
 				needLoading = true;
 				for (LivingEntity entity : entities) {
-					entity.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, second * 5, 3));
-					entity.addPotionEffect(new PotionEffect(PotionEffectType.MINING_FATIGUE, second * 5, 3));
-					entity.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, second * 5, 3));
+					entity.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 5 * second, 3));
+					entity.addPotionEffect(new PotionEffect(PotionEffectType.MINING_FATIGUE, 5 * second, 3));
+					entity.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 5 * second, 3));
 				}
 			}
 			if (skill.getId().equals("WIZ_02")) {
 				needLoading = true;
 				for (LivingEntity entity : entities) {
 					p.getWorld().strikeLightningEffect(entity.getLocation());
-					entity.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, second * 5, 10));
-					entity.damage(4);
+					entity.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 10 * second, 20));
+					entity.addPotionEffect(new PotionEffect(PotionEffectType.INSTANT_DAMAGE, 1, 0));
 				}
 			}
 			if (skill.getId().equals("WIZ_03")) {
 				needLoading = true;
 				for (LivingEntity entity : entities) {
-					entity.setFireTicks(second * 5);
-					entity.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, second / 3, 10));
+					entity.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, second / 3, 20));
+					entity.setFireTicks(10 * second);
+				}
+			}
+			if (skill.getId().equals("WIZ_04")) {
+				needLoading = true;
+				p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 10 * second, 20));
+				p.getWorld().spawnParticle(Particle.CAMPFIRE_COSY_SMOKE, p.getLocation(), 80, 2, 1, 2, 0.01);
+				p.getWorld().playSound(p.getLocation(), Sound.ITEM_FIRECHARGE_USE, 0.5f, 0.5f);
+				for (LivingEntity entity : entities) {
+					entity.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 2 * second, 20));
 				}
 			}
 		}
