@@ -82,13 +82,13 @@ public class DefSkills implements Listener {
 				p.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 20 * second, 0));
 			}
 		}
-		if (pSpe.equals(SpeCode.PRI.toString()) && item.getType().equals(Material.PAPER)) {
+		if (pSpe.equals(SpeCode.PRI.toString()) && item.getType().equals(Material.BOOK)) {
 			if (skill.getId().equals("PRI_01")) {
 				needLoading = true;
 				this._transScale(p, false);
 			}
 		}
-		if (pSpe.equals(SpeCode.DRU.toString()) && item.getType().equals(Material.BONE)) {
+		if (pSpe.equals(SpeCode.DRU.toString()) && item.getType().equals(Material.FEATHER)) {
 			if (skill.getId().equals("DRU_02")) {
 				needLoading = true;
 				this._transScale(p, true);

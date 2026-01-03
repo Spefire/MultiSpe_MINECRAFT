@@ -19,7 +19,7 @@ public class Skill {
 			new Skill("WAR_02", "Tranché Explosif", "Explosive Slash", SkillType.ATK),
 			new Skill("ARC_01", "Flèche Confuse", "Confusing Arrow", SkillType.ATK),
 			new Skill("ARC_02", "Flèche de Foudre", "Lightning Arrow", SkillType.ATK),
-			new Skill("ARC_03", "Flèche de Glace", "Lightning Arrow", SkillType.ATK),
+			new Skill("ARC_03", "??? Flèche de Glace", "Lightning Arrow", SkillType.ATK),
 			new Skill("ARC_04", "Flèche Explosive", "Explosive Arrow", SkillType.ATK),
 			new Skill("DRU_01", "Jugement Dernier", "Last Judgment", SkillType.ATK),
 			new Skill("NEC_01", "Faucheuse Obscure", "Dark Reaper", SkillType.ATK),
@@ -34,15 +34,15 @@ public class Skill {
 			new Skill("DRU_04", "Vol du Lapin", "Bunny Flight", SkillType.DEF),
 
 			// --- ZONE ---
-			new Skill("PRI_02", "Soin", "Heal", SkillType.ZONE),
-			new Skill("PRI_03", "Prière", "Prayer", SkillType.ZONE),
-			new Skill("PRI_04", "Dissipation", "Dispel", SkillType.ZONE),
+			new Skill("PRI_02", "??? Soin", "Heal", SkillType.ZONE),
+			new Skill("PRI_03", "??? Prière", "Prayer", SkillType.ZONE),
+			new Skill("PRI_04", "??? Dissipation", "Dispel", SkillType.ZONE),
 			new Skill("WIZ_01", "Prison Temporelle", "Temporal Prison", SkillType.ZONE),
 			new Skill("WIZ_02", "Orage", "Storm", SkillType.ZONE),
 			new Skill("WIZ_03", "Embrasement", "Blaze", SkillType.ZONE),
 			new Skill("WIZ_04", "Nuage de fumée", "Smoke", SkillType.ZONE),
-			new Skill("NEC_03", "Réveil des morts", "Awakening of the dead", SkillType.ZONE),
-			new Skill("NEC_04", "Malédiction", "Curse", SkillType.ZONE));
+			new Skill("NEC_03", "??? Réveil des morts", "Awakening of the dead", SkillType.ZONE),
+			new Skill("NEC_04", "??? Malédiction", "Curse", SkillType.ZONE));
 
 	public Skill(String id, String fr, String en, SkillType type) {
 		this.id = id;

@@ -86,7 +86,7 @@ public class PlayerCommands implements CommandExecutor {
 		// ----------------------------------------------------------------------------------------------------------------------
 		else if (label.equalsIgnoreCase("msClass")) {
 			if ((pSpe == null && plugin.checkPerm(p, "multispe.add.class"))
-					|| (pSpe != null || plugin.checkPerm(p, "multispe.change.class"))) {
+					|| (pSpe != null && plugin.checkPerm(p, "multispe.change.class"))) {
 				Boolean noMatch = true;
 				if (params.length == 1) {
 					String speWanted = params[0].toLowerCase();
@@ -164,13 +164,13 @@ public class PlayerCommands implements CommandExecutor {
 						item.setAmount(64);
 						p.getInventory().addItem(item);
 					} else if (pSpe.equals(SpeCode.PRI.toString())) {
-						item = new ItemStack(Material.PAPER);
+						item = new ItemStack(Material.BOOK);
 						p.getInventory().addItem(item);
 					} else if (pSpe.equals(SpeCode.WIZ.toString())) {
 						item = new ItemStack(Material.STICK);
 						p.getInventory().addItem(item);
 					} else if (pSpe.equals(SpeCode.DRU.toString())) {
-						item = new ItemStack(Material.BONE);
+						item = new ItemStack(Material.FEATHER);
 						p.getInventory().addItem(item);
 					} else if (pSpe.equals(SpeCode.NEC.toString())) {
 						item = new ItemStack(Material.STONE_HOE);

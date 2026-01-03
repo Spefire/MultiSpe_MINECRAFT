@@ -83,7 +83,7 @@ public class AtkSkills implements Listener {
 				p.setVelocity(p.getEyeLocation().getDirection().multiply(5));
 			}
 		}
-		if (pSpe.equals(SpeCode.DRU.toString()) && item.getType().equals(Material.BONE)) {
+		if (pSpe.equals(SpeCode.DRU.toString()) && item.getType().equals(Material.FEATHER)) {
 			if (skill.getId().equals("DRU_01")) {
 				needLoading = true;
 				p.getWorld().strikeLightningEffect(m.getLocation());
