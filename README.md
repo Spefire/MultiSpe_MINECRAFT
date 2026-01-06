@@ -2,12 +2,12 @@
 RPG plugin designed to add a new combat experience to Minecraft.
 
 Each player can choose a class:
-- Warrior
-- Archer
-- Priest
-- Wizard
-- Druid
-- Necromancer
+- ⚔️ **Warrior
+- 🏹 **Archer**
+- 📔 **Priest**
+- ✨ **Wizard**
+- 🐇 **Druid**
+- 🩸 **Necromancer**
 
 And gain access to unique abilities divided into several categories:
 - [ATK] — offensive skills: powerful strikes, poison, magic arrows, explosions...
