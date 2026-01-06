@@ -10,13 +10,11 @@ Each player can choose a class:
 - Necromancer
 
 And gain access to unique abilities divided into several categories:
-
-- [ATK] — offensive skills: powerful strikes, poison, magic arrows, explosions
-- [DEF] — defensive abilities: invisibility, rage, berserker mode, enhanced mobility
-- [ZONE] — area skills: temporal prison, fire, implosion, crowd control
+- [ATK] — offensive skills: powerful strikes, poison, magic arrows, explosions...
+- [DEF] — defensive abilities: invisibility, rage, berserker mode, enhanced mobility...
+- [ZONE] — area skills: temporal prison, fire, implosion, crowd control...
 
 The plugin also includes:
-
 - ✔️ Cooldown and recharge management
 - ✔️ Immersive visual effects, particles, and sounds
 - ✔️ Permission system
