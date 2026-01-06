@@ -2,7 +2,7 @@
 RPG plugin designed to add a new combat experience to Minecraft.
 
 Each player can choose a class:
-- ⚔️ **Warrior
+- ⚔️ **Warrior**
 - 🏹 **Archer**
 - 📔 **Priest**
 - ✨ **Wizard**
