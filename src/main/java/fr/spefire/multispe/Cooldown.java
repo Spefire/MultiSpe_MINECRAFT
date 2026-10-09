@@ -23,6 +23,8 @@ public class Cooldown extends Thread {
 		try {
 			FileConfiguration pluginConfig = plugin.getConfig();
 			Integer waitingTime = pluginConfig.getInt("cooldown");
+			if (waitingTime == 0)
+				return;
 			File playersFile = new File("plugins/MultiSpe/players.yml");
 			FileConfiguration playersConfig = YamlConfiguration.loadConfiguration(playersFile);
 			String pLanguage = playersConfig.getString(p.getName() + ".language");

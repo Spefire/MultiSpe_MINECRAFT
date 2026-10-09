@@ -68,7 +68,7 @@ public class PlayerCommands implements CommandExecutor {
 		FileConfiguration messagesConfig = YamlConfiguration.loadConfiguration(messagesFile);
 
 		// ----------------------------------------------------------------------------------------------------------------------
-		if (label.equalsIgnoreCase("msStatus")) {
+		if (label.equalsIgnoreCase("ms-status")) {
 			Boolean notFound = true;
 			if (pSpe != null) {
 				Spe spe = Spe.getSpeById(pSpe);
@@ -84,7 +84,7 @@ public class PlayerCommands implements CommandExecutor {
 		}
 
 		// ----------------------------------------------------------------------------------------------------------------------
-		else if (label.equalsIgnoreCase("msClass")) {
+		else if (label.equalsIgnoreCase("ms-class")) {
 			if ((pSpe == null && plugin.checkPerm(p, "multispe.add.class"))
 					|| (pSpe != null && plugin.checkPerm(p, "multispe.change.class"))) {
 				Boolean noMatch = true;
@@ -117,7 +117,7 @@ public class PlayerCommands implements CommandExecutor {
 				}
 				if (noMatch) {
 					p.sendMessage(
-							ChatColor.RED + "/msClass <" + (pIsFrench ? "Guerrier|Archer|Prêtre|Sorcier|Nécromancien"
+							ChatColor.RED + "/ms-class <" + (pIsFrench ? "Guerrier|Archer|Prêtre|Sorcier|Nécromancien"
 									: "Warrior|Archer|Priest|Wizard|Necromancer") + ">");
 				}
 			} else {
@@ -131,7 +131,7 @@ public class PlayerCommands implements CommandExecutor {
 		}
 
 		// ----------------------------------------------------------------------------------------------------------------------
-		else if (label.equalsIgnoreCase("msUnclass")) {
+		else if (label.equalsIgnoreCase("ms-unclass")) {
 			if (plugin.checkPerm(p, "multispe.remove.class")) {
 				if (pSpe != null) {
 					playersConfig.set(p.getName() + ".class", null);
@@ -150,7 +150,7 @@ public class PlayerCommands implements CommandExecutor {
 		}
 
 		// ----------------------------------------------------------------------------------------------------------------------
-		else if (label.equalsIgnoreCase("msStuff")) {
+		else if (label.equalsIgnoreCase("ms-stuff")) {
 			if (plugin.checkPerm(p, "multispe.stuff")) {
 				if (pSpe != null) {
 					ItemStack item;
@@ -187,7 +187,7 @@ public class PlayerCommands implements CommandExecutor {
 		}
 
 		// ----------------------------------------------------------------------------------------------------------------------
-		else if (label.equalsIgnoreCase("msLocation")) {
+		else if (label.equalsIgnoreCase("ms-location")) {
 			boolean isActivated = pluginConfig.getBoolean("worlds." + p.getWorld().getName());
 			if (isActivated) {
 				p.sendMessage(ChatColor.AQUA + messagesConfig.getString(pLanguage + ".locationtrue"));
@@ -197,7 +197,7 @@ public class PlayerCommands implements CommandExecutor {
 		}
 
 		// ----------------------------------------------------------------------------------------------------------------------
-		else if (label.equalsIgnoreCase("msSetWorld")) {
+		else if (label.equalsIgnoreCase("ms-setWorld")) {
 			if (plugin.checkPerm(p, "multispe.setworld")) {
 				if (params.length == 1 && params[0].equalsIgnoreCase("true")) {
 					pluginConfig.set("worlds." + p.getWorld().getName(), true);
@@ -208,7 +208,7 @@ public class PlayerCommands implements CommandExecutor {
 					plugin.saveConfig();
 					p.sendMessage(ChatColor.AQUA + messagesConfig.getString(pLanguage + ".worldfalse"));
 				} else {
-					p.sendMessage(ChatColor.RED + "/msSetWorld <true|false>");
+					p.sendMessage(ChatColor.RED + "/ms-setWorld <true|false>");
 				}
 			} else {
 				p.sendMessage(ChatColor.RED + messagesConfig.getString(pLanguage + ".nopermission"));
@@ -216,7 +216,7 @@ public class PlayerCommands implements CommandExecutor {
 		}
 
 		// ----------------------------------------------------------------------------------------------------------------------
-		else if (label.equalsIgnoreCase("msLanguage")) {
+		else if (label.equalsIgnoreCase("ms-language")) {
 			if (params.length == 1 && params[0].toLowerCase().startsWith("en")) {
 				playersConfig.set(p.getName() + ".language", Language.EN.toString());
 				try {
@@ -234,12 +234,12 @@ public class PlayerCommands implements CommandExecutor {
 				}
 				p.sendMessage(ChatColor.AQUA + "Le plugin est en français maintenant");
 			} else {
-				p.sendMessage(ChatColor.RED + "/msLanguage <en|fr>");
+				p.sendMessage(ChatColor.RED + "/ms-language <en|fr>");
 			}
 		}
 
 		// ----------------------------------------------------------------------------------------------------------------------
-		else if (label.equalsIgnoreCase("ms") || label.equalsIgnoreCase("msHelp")) {
+		else if (label.equalsIgnoreCase("ms") || label.equalsIgnoreCase("ms-help")) {
 			Boolean canClass = plugin.checkPerm(p, "multispe.add.class")
 					|| plugin.checkPerm(p, "multispe.change.class");
 			Boolean canUnclass = plugin.checkPerm(p, "multispe.remove.class");
@@ -250,44 +250,45 @@ public class PlayerCommands implements CommandExecutor {
 				p.sendMessage(ChatColor.AQUA + "---------" + ChatColor.WHITE + "[MultiSpe] - Aide" + ChatColor.AQUA
 						+ "--------------");
 				p.sendMessage(ChatColor.AQUA + "                          ");
-				p.sendMessage(ChatColor.AQUA + "/msStatus: " + ChatColor.WHITE + "Savoir sa classe");
+				p.sendMessage(ChatColor.AQUA + "/ms-status: " + ChatColor.WHITE + "Savoir sa classe");
 				if (canClass) {
-					p.sendMessage(ChatColor.AQUA + "/msClass: " + ChatColor.WHITE + "Choisir sa classe");
+					p.sendMessage(ChatColor.AQUA + "/ms-class: " + ChatColor.WHITE + "Choisir sa classe");
 				}
 				if (canUnclass) {
-					p.sendMessage(ChatColor.AQUA + "/msUnclass: " + ChatColor.WHITE + "Supprimer sa classe");
+					p.sendMessage(ChatColor.AQUA + "/ms-unclass: " + ChatColor.WHITE + "Supprimer sa classe");
 				}
 				if (canStuff) {
-					p.sendMessage(ChatColor.AQUA + "/msStuff: " + ChatColor.WHITE + "Avoir son équipement");
+					p.sendMessage(ChatColor.AQUA + "/ms-stuff: " + ChatColor.WHITE + "Avoir son équipement");
 				}
-				p.sendMessage(ChatColor.AQUA + "/msLocation: " + ChatColor.WHITE + "Savoir si le plugin est actif ici");
+				p.sendMessage(
+						ChatColor.AQUA + "/ms-location: " + ChatColor.WHITE + "Savoir si le plugin est actif ici");
 				if (canSetWorld) {
-					p.sendMessage(ChatColor.AQUA + "/msSetWorld: " + ChatColor.WHITE
+					p.sendMessage(ChatColor.AQUA + "/ms-setWorld: " + ChatColor.WHITE
 							+ "Activer ou non le plugin dans ce monde");
 				}
-				p.sendMessage(ChatColor.AQUA + "/msLanguage: " + ChatColor.WHITE + "Choisir sa langue");
+				p.sendMessage(ChatColor.AQUA + "/ms-language: " + ChatColor.WHITE + "Choisir sa langue");
 			} else {
 				p.sendMessage(ChatColor.AQUA + "                          ");
 				p.sendMessage(ChatColor.AQUA + "---------" + ChatColor.WHITE + "[MultiSpe] - Help" + ChatColor.AQUA
 						+ "--------------");
 				p.sendMessage(ChatColor.AQUA + "                          ");
-				p.sendMessage(ChatColor.AQUA + "/msStatus: " + ChatColor.WHITE + "To know your class");
+				p.sendMessage(ChatColor.AQUA + "/ms-status: " + ChatColor.WHITE + "To know your class");
 				if (canClass) {
-					p.sendMessage(ChatColor.AQUA + "/msClass: " + ChatColor.WHITE + "To choice your class");
+					p.sendMessage(ChatColor.AQUA + "/ms-class: " + ChatColor.WHITE + "To choice your class");
 				}
 				if (canUnclass) {
-					p.sendMessage(ChatColor.AQUA + "/msUnclass: " + ChatColor.WHITE + "To remove your class");
+					p.sendMessage(ChatColor.AQUA + "/ms-unclass: " + ChatColor.WHITE + "To remove your class");
 				}
 				if (canStuff) {
-					p.sendMessage(ChatColor.AQUA + "/msStuff: " + ChatColor.WHITE + "To get your stuff");
+					p.sendMessage(ChatColor.AQUA + "/ms-stuff: " + ChatColor.WHITE + "To get your stuff");
 				}
-				p.sendMessage(ChatColor.AQUA + "/msLocation: " + ChatColor.WHITE
+				p.sendMessage(ChatColor.AQUA + "/ms-location: " + ChatColor.WHITE
 						+ "To know if the plugin is actived at your location");
 				if (canSetWorld) {
-					p.sendMessage(ChatColor.AQUA + "/msSetWorld: " + ChatColor.WHITE
+					p.sendMessage(ChatColor.AQUA + "/ms-setWorld: " + ChatColor.WHITE
 							+ "To enable or disable the plugin in this world");
 				}
-				p.sendMessage(ChatColor.AQUA + "/msLanguage: " + ChatColor.WHITE + "To choice your language");
+				p.sendMessage(ChatColor.AQUA + "/ms-language: " + ChatColor.WHITE + "To choice your language");
 			}
 		}
 		return true;

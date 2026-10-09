@@ -1,35 +1,35 @@
 name: MultiSpe
 description: "Multi classes plugin with skills"
 main: fr.spefire.multispe.MultiSpe
-version: 1.0
+version: 1.1
 api-version: '1.21'
 author: Spefire
 commands:
   ms:
     description: "The plugin help"
     usage: "/ms"
-    aliases: [mshelp]
-  msStatus:
+    aliases: [ms-help]
+  ms-status:
     description: "To know your class"
-    usage: "/msStatus"
-  msClass:
+    usage: "/ms-status"
+  ms-class:
     description: "To choice your class"
-    usage: "/msClass <Warrior|Archer|Priest|Wizard|Necromancer>"
-  msUnclass:
+    usage: "/ms-class <Warrior|Archer|Priest|Wizard|Necromancer>"
+  ms-unclass:
     description: "To remove your class"
-    usage: "/msUnclass"
-  msStuff:
+    usage: "/ms-unclass"
+  ms-stuff:
     description: "To get your stuff"
-    usage: "/msStuff"
-  msLanguage:
+    usage: "/ms-stuff"
+  ms-language:
     description: "To change your language"
-    usage: "/msLanguage <en|fr>"
-  msLocation:
+    usage: "/ms-language <en|fr>"
+  ms-location:
     description: "To know if the plugin is actived at your location"
-    usage: "/msLocation"
-  msSetWorld:
+    usage: "/ms-location"
+  ms-setWorld:
     description: "To enable or disable the plugin in this world"
-    usage: "/msSetWorld <true/false>"
+    usage: "/ms-setWorld <true/false>"
 permissions:
   multispe.admin:
     description: "Can use all commands"

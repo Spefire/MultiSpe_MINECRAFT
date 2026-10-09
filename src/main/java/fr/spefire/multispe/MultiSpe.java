@@ -15,6 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.spefire.multispe.actions.AtkSkills;
 import fr.spefire.multispe.actions.DefSkills;
+import fr.spefire.multispe.actions.MonsterListener;
 import fr.spefire.multispe.actions.ZoneSkills;
 import fr.spefire.multispe.commands.ConsoleCommands;
 import fr.spefire.multispe.commands.PlayerCommands;
@@ -32,6 +33,7 @@ public class MultiSpe extends JavaPlugin {
 	private AtkSkills atkSkills;
 	private DefSkills defSkills;
 	private ZoneSkills zoneSkills;
+	private MonsterListener monsterListener;
 
 	public MultiSpe() {
 		plugin = this;
@@ -46,19 +48,21 @@ public class MultiSpe extends JavaPlugin {
 		selectionCmds = new SelectionCommands(this);
 		pm.registerEvents(selectionCmds, this);
 		getCommand("ms").setExecutor(new PlayerCommands(this));
-		getCommand("msStatus").setExecutor(new PlayerCommands(this));
-		getCommand("msClass").setExecutor(new PlayerCommands(this));
-		getCommand("msUnclass").setExecutor(new PlayerCommands(this));
-		getCommand("msStuff").setExecutor(new PlayerCommands(this));
-		getCommand("msLanguage").setExecutor(new PlayerCommands(this));
-		getCommand("msLocation").setExecutor(new PlayerCommands(this));
-		getCommand("msSetWorld").setExecutor(new PlayerCommands(this));
+		getCommand("ms-status").setExecutor(new PlayerCommands(this));
+		getCommand("ms-class").setExecutor(new PlayerCommands(this));
+		getCommand("ms-unclass").setExecutor(new PlayerCommands(this));
+		getCommand("ms-stuff").setExecutor(new PlayerCommands(this));
+		getCommand("ms-language").setExecutor(new PlayerCommands(this));
+		getCommand("ms-location").setExecutor(new PlayerCommands(this));
+		getCommand("ms-setWorld").setExecutor(new PlayerCommands(this));
 		atkSkills = new AtkSkills(this);
 		pm.registerEvents(atkSkills, this);
 		defSkills = new DefSkills(this);
 		pm.registerEvents(defSkills, this);
 		zoneSkills = new ZoneSkills(this);
 		pm.registerEvents(zoneSkills, this);
+		monsterListener = new MonsterListener(this);
+		pm.registerEvents(monsterListener, this);
 		plugin.saveConfig();
 
 		// ----------------------------------------------------------------------------------------------------------------------
